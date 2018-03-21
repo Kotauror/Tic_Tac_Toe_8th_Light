@@ -14,6 +14,12 @@ describe Game do
     it 'has empty player2 slot' do
       expect(game.player2).to eq(nil)
     end
+    it 'has empty active player slot' do
+      expect(game.active_player).to eq(nil)
+    end
+    it 'has empty opponent slot' do
+      expect(game.opponent).to eq(nil)
+    end
   end
 
 end
