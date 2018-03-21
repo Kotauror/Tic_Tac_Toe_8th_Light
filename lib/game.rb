@@ -17,4 +17,12 @@ class Game
     @mode = string
   end
 
+  def set_player_1(object)
+    @player1 = object
+  end
+
+  def set_player_2(object)
+    @player2 = object
+  end
+
 end

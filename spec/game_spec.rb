@@ -3,6 +3,8 @@ require 'game'
 describe Game do
 
   subject(:game) { described_class.new }
+  let(:human) {double('human')}
+  let(:computer) {double('computer')}
 
   describe '#initialize' do
     it 'has initial mode nil' do
@@ -29,6 +31,20 @@ describe Game do
     it 'sets the mode to the string' do
       game.set_up_mode("single")
       expect(game.mode).to eq("single")
+    end
+  end
+
+  describe '#set_player_1(object)' do
+    it 'sets the player one to be an object' do
+      game.set_player_1(:human)
+      expect(game.player1).to eq(:human)
+    end
+  end
+
+  describe '#set_player_2(object)' do
+    it 'sets the player one to be an object' do
+      game.set_player_2(:computer)
+      expect(game.player2).to eq(:computer)
     end
   end
 
