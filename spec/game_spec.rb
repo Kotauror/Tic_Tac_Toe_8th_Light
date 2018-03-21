@@ -20,6 +20,9 @@ describe Game do
     it 'has empty opponent slot' do
       expect(game.opponent).to eq(nil)
     end
+    it 'creates a new board instance of the Board class' do
+      expect(game.board).to be_a_kind_of(Board)
+    end
   end
 
 end
