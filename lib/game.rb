@@ -13,4 +13,8 @@ class Game
     @board = Board.new
   end
 
+  def set_up_mode(string)
+    @mode = string
+  end
+
 end

@@ -25,4 +25,11 @@ describe Game do
     end
   end
 
+  describe '#set_up_mode(string)' do
+    it 'sets the mode to the string' do
+      game.set_up_mode("single")
+      expect(game.mode).to eq("single")
+    end
+  end
+
 end
