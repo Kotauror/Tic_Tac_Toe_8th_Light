@@ -25,4 +25,12 @@ class Game
     @player2 = object
   end
 
+  def set_active_player(object)
+    @active_player = object
+  end
+
+  def set_opponent(object)
+    @opponent = object 
+  end
+
 end

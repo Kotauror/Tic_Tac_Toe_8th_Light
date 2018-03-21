@@ -48,4 +48,18 @@ describe Game do
     end
   end
 
+  describe '#set_active_player(object)' do
+    it 'sets the active player' do
+      game.set_active_player(:human)
+      expect(game.active_player).to eq(:human)
+    end
+  end
+
+  describe '#set_opponent(object)' do
+    it 'sets the opposing player' do
+      game.set_opponent(:computer)
+      expect(game.opponent).to eq(:computer)
+    end
+  end
+
 end
