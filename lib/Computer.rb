@@ -1,2 +1,2 @@
-class Human < Computer 
+class Computer < Player
 end
