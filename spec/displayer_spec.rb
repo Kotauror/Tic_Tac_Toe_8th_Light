@@ -17,18 +17,21 @@ describe Displayer do
         expect{displayer.display_mode_information}.to output("Enter 1 to pick human vs computer\nEnter 2 to pick human vs human\nEnter 3 to pick computer vs computer\n").to_stdout
       end
     end
-
     describe '#single_mode_name' do
       it 'informs of mode, asks for user name and returns it' do
         allow(displayer).to receive(:single_mode_name).and_return("Justyna\n")
         expect(displayer.single_mode_name).to eq("Justyna\n")
       end
     end
-
     describe '#multi_mode_names' do
       it 'informs of mode, asks for users names and returns them in an array' do
         allow(displayer).to receive(:multi_mode_names).and_return(["Justyna\n", "Kota\n"])
         expect(displayer.multi_mode_names).to eq(["Justyna\n", "Kota\n"])
+      end
+    end
+    describe '#computer_mode' do
+      it 'informs of mode, informs the user of computers names' do
+        expect{displayer.computer_mode}.to output("You've picked the computer vs computer\nThe computers will be named: Computer 1 and Computer 2\n").to_stdout
       end
     end
   end
