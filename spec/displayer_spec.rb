@@ -10,4 +10,11 @@ describe Displayer do
     end
   end
 
+  describe '#display_mode_information' do
+    it 'displayer information about available modes' do
+      expect{displayer.display_mode_information}.to output("Enter 1 to pick human vs computer\nEnter 2 to pick human vs human\nEnter 3 to pick computer vs computer\n").to_stdout
+    end
+  end
+
+
 end
