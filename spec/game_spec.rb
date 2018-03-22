@@ -28,9 +28,14 @@ describe Game do
   end
 
   describe '#set_up_mode(string)' do
-    it 'sets the mode to the string' do
-      game.set_up_mode("single")
-      expect(game.mode).to eq("single")
+    it 'sets the mode to the valid string' do
+      game.set_up_mode("S")
+      expect(game.mode).to eq("S")
+    end
+
+    it "doesn't set the mode to an invalid string" do
+      game.set_up_mode("string")
+      expect(game.mode).to eq(nil)
     end
   end
 

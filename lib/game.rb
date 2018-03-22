@@ -14,7 +14,9 @@ class Game
   end
 
   def set_up_mode(string)
-    @mode = string
+    if string == "S" || string == "M" || string == "C" then
+      @mode = string
+    end
   end
 
   def set_player_1(object)
@@ -30,7 +32,7 @@ class Game
   end
 
   def set_opponent(object)
-    @opponent = object 
+    @opponent = object
   end
 
 end
