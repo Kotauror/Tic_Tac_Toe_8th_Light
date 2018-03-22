@@ -17,4 +17,11 @@ class Displayer
     puts "Enter 3 to pick computer vs computer"
   end
 
+  def single_mode_info
+    puts "You've picked the human vs computer mode"
+    puts "Enter your name"
+    name = STDIN.gets.chomp
+    return name
+  end
+
 end

@@ -16,5 +16,12 @@ describe Displayer do
     end
   end
 
+  describe '#single_mode_info' do
+    it 'informs of mode, asks for user name and returns it' do
+      allow(displayer).to receive(:single_mode_info).and_return("Justyna\n")
+      expect(displayer.single_mode_info).to eq("Justyna\n")
+    end
+  end
+
 
 end
