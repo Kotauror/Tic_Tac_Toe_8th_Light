@@ -14,5 +14,18 @@ describe Player do
       end
     end
   end
-  
+
+  context 'Player setup' do
+    describe '#set_up_sign' do
+      it "sets the player's sign when a valid sign provided" do
+        player.set_up_sign("J")
+        expect(player.sign).to eq("J")
+      end
+      it "doesn't set the player's sign when an invalid sign provided" do
+        player.set_up_sign("Justyna")
+        expect(player.sign).to eq(nil)
+      end
+    end
+  end
+
 end

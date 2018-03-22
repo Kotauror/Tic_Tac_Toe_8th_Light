@@ -7,4 +7,10 @@ class Player
     @sign = nil
   end
 
+  def set_up_sign(sign)
+    if sign.length == 1 then
+      @sign = sign
+    end
+  end 
+
 end
