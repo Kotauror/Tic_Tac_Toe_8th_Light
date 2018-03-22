@@ -10,6 +10,7 @@ def start_game
   @displayer = Displayer.new
   @displayer.welcome
   game_mode
+  player_order
 end
 
 def game_mode
@@ -36,6 +37,26 @@ def set_mode(number)
     @game.set_player_2(Computer.new("Computer 2"))
   else
     game_mode
+  end
+end
+
+def player_order
+  @displayer.display_order_information(@game.player1.name, @game.player2.name)
+  set_order(STDIN.gets.chomp)
+end
+
+def set_order(number)
+  case number
+  when "1"
+    puts "#{@game.player1.name} is starting"
+    @game.set_active_player(@game.player1)
+    @game.set_opponent(@game.player2)
+  when "2"
+    puts "#{@game.player2.name} is starting"
+    @game.set_active_player(@game.player2)
+    @game.set_opponent(@game.player1)
+  else
+    player_order
   end
 end
 
