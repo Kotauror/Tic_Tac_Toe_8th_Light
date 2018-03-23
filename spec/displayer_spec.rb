@@ -37,10 +37,8 @@ describe Displayer do
   end
 
   context 'Picking order' do
-    describe '#display_order_information' do
-      it 'asks who should start' do
-        expect{displayer.display_order_information("Justyna", "Igor")}.to output("If Justyna shall start enter 1, if Igor shall start enter 2\n").to_stdout
-      end
+    describe '#get_order_information' do
+
     end
   end
 

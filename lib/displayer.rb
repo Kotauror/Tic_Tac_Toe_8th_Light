@@ -36,8 +36,20 @@ class Displayer
     puts "The computers will be named: Computer 1 and Computer 2 and will have signs 'C' and 'K'"
   end
 
-  def display_order_information(name1, name2)
-      puts "If #{name1} shall start enter 1, if #{name2} shall start enter 2"
+  def get_order_information(name1, name2)
+    puts "If #{name1} shall start enter 1, if #{name2} shall start enter 2"
+    while true do
+      number = STDIN.gets.chomp
+      if number == 1 then
+        puts "#{name1} is starting"
+        return number
+      elsif number == 2 then
+        puts "#{name2} is starting"
+        return number
+      else
+        puts "Please enter 1 or 2"
+      end
+    end
   end
 
   def ask_for_name_and_sign
