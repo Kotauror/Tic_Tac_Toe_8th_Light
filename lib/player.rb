@@ -2,15 +2,9 @@ class Player
 
   attr_reader :name, :sign
 
-  def initialize(name)
+  def initialize(name, sign)
     @name = name
-    @sign = nil
-  end
-
-  def set_up_sign(sign)
-    if sign.length == 1 then
-      @sign = sign
-    end
+    @sign = sign
   end
 
 end
