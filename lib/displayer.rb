@@ -41,19 +41,12 @@ class Displayer
 
   def computer_mode
     puts "You've picked the computer vs computer"
-    puts "The computers will be named: Computer 1 and Computer 2"
-  end
-
-  def computer_mode
-    puts "You've picked the computer vs computer"
-    puts "The computers will be named: Computer 1 and Computer 2"
+    puts "The computers will be named: Computer 1 and Computer 2 and will have signs 'C' and 'K'"
   end
 
   def display_order_information(name1, name2)
       puts "If #{name1} shall start enter 1, if #{name2} shall start enter 2"
   end
-
-
 
   def display_sign_information(active, opponent)
     puts "Now it's a time to pick yous signs! Please enter one letter that will mark your moves on the board."

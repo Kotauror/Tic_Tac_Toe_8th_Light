@@ -31,7 +31,7 @@ describe Displayer do
     end
     describe '#computer_mode' do
       it 'informs of mode, informs the user of computers names' do
-        expect{displayer.computer_mode}.to output("You've picked the computer vs computer\nThe computers will be named: Computer 1 and Computer 2\n").to_stdout
+        expect{displayer.computer_mode}.to output("You've picked the computer vs computer\nThe computers will be named: Computer 1 and Computer 2 and will have signs 'C' and 'K'\n").to_stdout
       end
     end
   end
