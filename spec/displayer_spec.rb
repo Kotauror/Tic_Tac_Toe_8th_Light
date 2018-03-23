@@ -43,9 +43,13 @@ describe Displayer do
 
   context 'Picking order' do
     describe '#get_order_information' do
-      it 'picks the order' do
+      it 'picks the order when correct number provided' do
         subject.stub(:gets).and_return("1")
         expect(displayer.get_order_information("Justyna", "Kota")).to eq("1")
+      end
+      it 'doesnt set the order on invalid input' do
+        subject.stub(:gets).and_return("3", "1")
+        expect{displayer.get_order_information("Justyna", "Kota")}.to output("If Justyna shall start enter 1, if Kota shall start enter 2\nPlease enter 1 or 2\nJustyna is starting\n").to_stdout
       end
     end
   end
