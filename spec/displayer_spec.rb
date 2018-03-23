@@ -23,10 +23,10 @@ describe Displayer do
         expect(displayer.single_mode_name_sign).to eq(["Justyna\n", "J\n"])
       end
     end
-    describe '#multi_mode_names' do
+    describe '#multi_mode_names_signs' do
       it 'informs of mode, asks for users names and returns them in an array' do
-        allow(displayer).to receive(:multi_mode_names).and_return(["Justyna\n", "Kota\n"])
-        expect(displayer.multi_mode_names).to eq(["Justyna\n", "Kota\n"])
+        allow(displayer).to receive(:multi_mode_names_signs).and_return(["Justyna\n", "J\n", "Kota\n", "K\n"])
+        expect(displayer.multi_mode_names_signs).to eq(["Justyna\n", "J\n", "Kota\n", "K\n"])
       end
     end
     describe '#computer_mode' do
@@ -43,15 +43,5 @@ describe Displayer do
       end
     end
   end
-
-  context 'Picking up the signs' do
-    describe '#get_signs' do
-      it 'asks for users signs and returns them in an array' do
-        allow(displayer).to receive(:get_signs).with(:Justyna, :Kota).and_return(["J\n", "K\n"])
-        expect(displayer.get_signs(:Justyna, :Kota)).to eq(["J\n", "K\n"])
-      end
-    end
-  end
-
 
 end

@@ -26,13 +26,17 @@ class Displayer
     return [name, sign]
   end
 
-  def multi_mode_names
+  def multi_mode_names_signs
     puts "You've picked the human vs human mode"
     puts "Enter the first name"
     name1 = STDIN.gets.chomp
+    puts "#{name1}, Enter one letter sign to identify you on the board eg. X or O"
+    sign1 = STDIN.gets.chomp
     puts "Enter the second name"
     name2 = STDIN.gets.chomp
-    return [name1, name2]
+    puts "#{name2}, Enter one letter sign to identify you on the board eg. X or O"
+    sign2 = STDIN.gets.chomp
+    return [name1, name2, sign1, sign2]
   end
 
   def computer_mode
