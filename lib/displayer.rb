@@ -39,11 +39,11 @@ class Displayer
   def get_order_information(name1, name2)
     puts "If #{name1} shall start enter 1, if #{name2} shall start enter 2"
     while true do
-      number = STDIN.gets.chomp
-      if number == 1 then
+      number = gets.chomp.to_s
+      if number == "1" then
         puts "#{name1} is starting"
         return number
-      elsif number == 2 then
+      elsif number == "2" then
         puts "#{name2} is starting"
         return number
       else
@@ -54,7 +54,7 @@ class Displayer
 
   def ask_for_name_and_sign
     puts "Enter name"
-    name = STDIN.gets.chomp
+    name = gets.chomp
     puts "#{name}, enter one letter sign to identify you on the board eg. X or O"
     sign = single_character_guard
     return [name, sign]
@@ -62,7 +62,7 @@ class Displayer
 
   def single_character_guard
     while true do
-      sign = STDIN.gets.chomp
+      sign = gets.chomp
       if sign.length == 1 then
         return sign
       else
