@@ -17,11 +17,13 @@ class Displayer
     puts "Enter 3 to pick computer vs computer"
   end
 
-  def single_mode_name
+  def single_mode_name_sign
     puts "You've picked the human vs computer mode"
     puts "Enter your name"
     name = STDIN.gets.chomp
-    return name
+    puts "Enter one letter sign to identify you on the board eg. X or O"
+    sign = STDIN.gets.chomp
+    return [name, sign]
   end
 
   def multi_mode_names
@@ -47,11 +49,13 @@ class Displayer
       puts "If #{name1} shall start enter 1, if #{name2} shall start enter 2"
   end
 
-  def get_signs(active, opponent)
+
+
+  def display_sign_information(active, opponent)
     puts "Now it's a time to pick yous signs! Please enter one letter that will mark your moves on the board."
-    puts "#{active}, enter your sign"
+    puts "#{active.name}, enter your sign"
     sign_active = STDIN.gets.chomp
-    puts "#{opponent}, enter your sign"
+    puts "#{opponent.name}, enter your sign"
     sign_opponent = STDIN.gets.chomp
     return [sign_active, sign_opponent]
   end
