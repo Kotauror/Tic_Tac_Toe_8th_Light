@@ -19,24 +19,16 @@ class Displayer
 
   def single_mode_name_sign
     puts "You've picked the human vs computer mode"
-    puts "Enter your name"
-    name = STDIN.gets.chomp
-    puts "Enter one letter sign to identify you on the board eg. X or O"
-    sign = STDIN.gets.chomp
-    return [name, sign]
+    ask_for_name_and_sign
   end
 
   def multi_mode_names_signs
     puts "You've picked the human vs human mode"
-    puts "Enter the first name"
-    name1 = STDIN.gets.chomp
-    puts "#{name1}, Enter one letter sign to identify you on the board eg. X or O"
-    sign1 = STDIN.gets.chomp
-    puts "Enter the second name"
-    name2 = STDIN.gets.chomp
-    puts "#{name2}, Enter one letter sign to identify you on the board eg. X or O"
-    sign2 = STDIN.gets.chomp
-    return [name1, name2, sign1, sign2]
+    puts "First player"
+    user_one_data = ask_for_name_and_sign
+    puts "Second player"
+    user_two_data = ask_for_name_and_sign
+    return user_one_data + user_two_data
   end
 
   def computer_mode
@@ -48,13 +40,23 @@ class Displayer
       puts "If #{name1} shall start enter 1, if #{name2} shall start enter 2"
   end
 
-  def display_sign_information(active, opponent)
-    puts "Now it's a time to pick yous signs! Please enter one letter that will mark your moves on the board."
-    puts "#{active.name}, enter your sign"
-    sign_active = STDIN.gets.chomp
-    puts "#{opponent.name}, enter your sign"
-    sign_opponent = STDIN.gets.chomp
-    return [sign_active, sign_opponent]
+  def ask_for_name_and_sign
+    puts "Enter name"
+    name = STDIN.gets.chomp
+    puts "#{name}, enter one letter sign to identify you on the board eg. X or O"
+    sign = single_character_guard
+    return [name, sign]
+  end
+
+  def single_character_guard
+    while true do
+      sign = STDIN.gets.chomp
+      if sign.length == 1 then
+        return sign
+      else
+        puts "Please write only one character"
+      end
+    end
   end
 
 end

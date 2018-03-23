@@ -11,7 +11,6 @@ def start_game
   @displayer.welcome
   game_mode
   player_order
-  select_sign
 end
 
 def game_mode
@@ -23,12 +22,12 @@ def set_mode_and_players(number)
   case number
   when "1"
     @game.set_up_mode("S")
-    user_data = @displayer.single_mode_name
+    user_data = @displayer.single_mode_name_sign
     @game.set_player_1(Human.new(user_data[0], user_data[1]))
     @game.set_player_2(Computer.new("Computer", "C"))
   when "2"
     @game.set_up_mode("M")
-    users_data = @displayer.multi_mode_names
+    users_data = @displayer.multi_mode_names_signs
     @game.set_player_1(Human.new(users_data[0], users_data[1]))
     @game.set_player_2(Human.new(users_data[2], users_data[3]))
   when "3"
@@ -60,6 +59,5 @@ def set_order(number)
     player_order
   end
 end
-
 
 start_game
