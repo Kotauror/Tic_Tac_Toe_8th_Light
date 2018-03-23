@@ -47,4 +47,13 @@ class Displayer
       puts "If #{name1} shall start enter 1, if #{name2} shall start enter 2"
   end
 
+  def get_signs(active, opponent)
+    puts "Now it's a time to pick yous signs! Please enter one letter that will mark your moves on the board."
+    puts "#{active}, enter your sign"
+    sign_active = STDIN.gets.chomp
+    puts "#{opponent}, enter your sign"
+    sign_opponent = STDIN.gets.chomp
+    return [sign_active, sign_opponent]
+  end
+
 end

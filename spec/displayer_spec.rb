@@ -35,10 +35,20 @@ describe Displayer do
       end
     end
   end
+
   context 'Picking order' do
     describe '#display_order_information' do
       it 'asks who should start' do
         expect{displayer.display_order_information("Justyna", "Igor")}.to output("If Justyna shall start enter 1, if Igor shall start enter 2\n").to_stdout
+      end
+    end
+  end
+
+  context 'Picking up the signs' do
+    describe '#get_signs' do
+      it 'asks for users signs and returns them in an array' do
+        allow(displayer).to receive(:get_signs).with(:Justyna, :Kota).and_return(["J\n", "K\n"])
+        expect(displayer.get_signs(:Justyna, :Kota)).to eq(["J\n", "K\n"])
       end
     end
   end
