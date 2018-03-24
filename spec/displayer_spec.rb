@@ -5,7 +5,7 @@ describe Displayer do
   subject(:displayer) { described_class.new }
 
   before do
-    allow($stdout).to receive(:write) # nadpisuje operacje wypisywania
+    allow($stdout).to receive(:write)
   end
 
   context 'At the beginning of the game' do

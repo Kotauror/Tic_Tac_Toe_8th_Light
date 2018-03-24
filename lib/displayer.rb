@@ -16,12 +16,12 @@ class Displayer
     puts "Enter 2 to pick human vs human"
     puts "Enter 3 to pick computer vs computer"
     while true do
-      mode = gets.chomp.to_s
-      if mode == "1" then
+      case mode = gets.chomp.to_s
+      when "1"
         return mode
-      elsif mode == "2" then
+      when "2"
         return mode
-      elsif mode == "3" then
+      when "3"
         return mode
       else
         puts "Please enter 1, 2 or 3"
@@ -51,11 +51,11 @@ class Displayer
   def get_order_information(name1, name2)
     puts "If #{name1} shall start enter 1, if #{name2} shall start enter 2"
     while true do
-      number = gets.chomp.to_s
-      if number == "1" then
+      case number = gets.chomp.to_s
+      when "1"
         puts "#{name1} is starting"
         return number
-      elsif number == "2" then
+      when "2"
         puts "#{name2} is starting"
         return number
       else
@@ -75,11 +75,8 @@ class Displayer
   def single_character_guard
     while true do
       sign = gets.chomp
-      if sign.length == 1 then
-        return sign
-      else
-        puts "Please write only one character"
-      end
+      return sign if sign.length == 1
+      puts "Please write only one character"
     end
   end
 
