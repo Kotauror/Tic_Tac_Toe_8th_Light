@@ -25,7 +25,7 @@ describe Displayer do
         displayer.stub(:gets).and_return("1\n")
         expect(displayer.set_player_mode).to eq("1")
       end
-      it 'doesnt return the mode on invalid input' do
+      it 'In case of invalid input - asks again' do
         displayer.stub(:gets).and_return("5\n", "1\n")
         expect{displayer.set_player_mode}.to output(
           "Enter 1 to pick human vs computer\nEnter 2 to pick human vs human\n" +
@@ -46,7 +46,7 @@ describe Displayer do
         displayer.stub(:gets).and_return("Justyna\n", "J\n")
         expect(displayer.single_mode_name_sign).to eq(["Justyna", "J"])
       end
-      it 'asks for user name and sign and doesnt return them on invalid input' do
+      it 'In case of invalid input - asks again' do
         displayer.stub(:gets).and_return("Justyna\n", "JZ\n", "J\n")
         expect{displayer.single_mode_name_sign}.to output(
           "You've picked the human vs computer mode\nEnter name\n" +
@@ -60,7 +60,7 @@ describe Displayer do
         displayer.stub(:gets).and_return("Justyna\n", "J\n", "Kota\n", "K\n")
         expect(displayer.multi_mode_names_signs).to eq(["Justyna", "J", "Kota", "K"])
       end
-      it 'asks for users names and doesnt return them on invalid input - too long sing' do
+      it 'In case of invalid input (too long string) - asks again' do
         displayer.stub(:gets).and_return("Justyna\n", "JZ\n", "J\n", "Kota\n", "K\n")
         expect{displayer.multi_mode_names_signs}.to output(
           "You've picked the human vs human mode\nFirst player\nEnter name\n" +
@@ -70,7 +70,7 @@ describe Displayer do
           "Kota, enter one letter sign to identify you on the board eg. X or O\n"
         ).to_stdout
       end
-      it 'asks for users names and doesnt return them on invalid input - same sign twice' do
+      it 'In case of invalid input (same sign twice) - asks again' do
         displayer.stub(:gets).and_return("Justyna\n", "J\n", "Kota\n", "J\n", "K\n")
         expect{displayer.multi_mode_names_signs}.to output(
           "You've picked the human vs human mode\nFirst player\nEnter name\n" +
@@ -97,12 +97,25 @@ describe Displayer do
         displayer.stub(:gets).and_return("1")
         expect(displayer.get_order_information("Justyna", "Kota")).to eq("1")
       end
-      it 'doesnt set the order on invalid input' do
+      it 'In case of invalid input - asks again' do
         displayer.stub(:gets).and_return("3", "1")
         expect{displayer.get_order_information("Justyna", "Kota")}.to output(
           "If Justyna shall start enter 1, if Kota shall start enter 2\n" +
           "\e[0;31;49mPlease enter 1 or 2\e[0m\nJustyna is starting\n"
         ).to_stdout
+      end
+    end
+
+    context 'Setup is ready' do
+      describe '#set_up_ready' do
+        it 'tells the setup is ready, counts down from 5 to 1 and cleans the terminal window' do
+          allow(displayer).to receive(:sleep)
+          expect{displayer.set_up_ready}.to output(
+            "\e[0;94;49m-------- Set up is ready! --------\e[0m\n" +
+            "\e[0;94;49mYou'r game will start in\e[0m\n\e[0;94;49m5\e[0m\n" +
+            "\e[0;94;49m4\e[0m\n\e[0;94;49m3\e[0m\n\e[0;94;49m2\e[0m\n\e[0;94;49m1\e[0m\n"
+          ).to_stdout
+        end
       end
     end
   end

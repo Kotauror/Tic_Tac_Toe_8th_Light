@@ -5,7 +5,7 @@ require_relative "computer"
 require_relative "board"
 require_relative "displayer"
 
-def start_game
+def start_setup
   @game = Game.new
   @displayer = Displayer.new
   @displayer.welcome
@@ -47,6 +47,7 @@ def player_order
     @game.set_active_player(@game.player2)
     @game.set_opponent(@game.player1)
   end
+  @displayer.set_up_ready
 end
 
-start_game
+start_setup
