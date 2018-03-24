@@ -10,8 +10,8 @@ class Board
     @values[picked_position.to_i - 1] = active_player.sign
   end
 
-  def is_valid?(position)
-    position.to_i != 0 && @values.include?(position)
+  def is_valid?(picked_number)
+    picked_number.to_i != 0 && @values.include?(picked_number) #non-numeric-string.to_i == 0
   end
 
 end

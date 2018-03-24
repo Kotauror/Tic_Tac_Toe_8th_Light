@@ -135,12 +135,12 @@ describe Displayer do
       it 'returns position picked by user on valid input' do
         allow(displayer).to receive(:gets).and_return("1")
         allow(board).to receive(:is_valid?).and_return(true)
-        expect(displayer.ask_for_position(active_player, board)).to eq("1")
+        expect(displayer.ask_for_number(active_player, board)).to eq("1")
       end
       it 'In case of invalid input - asks again' do
         allow(displayer).to receive(:gets).and_return("1\n")
         allow(board).to receive(:is_valid?).and_return(false, true)
-        expect{displayer.ask_for_position(active_player, board)}.to output(
+        expect{displayer.ask_for_number(active_player, board)}.to output(
           "justyna, pick a spot\n\e[0;31;49mPut a number of a non-taken field\e[0m\n"
         ).to_stdout
       end

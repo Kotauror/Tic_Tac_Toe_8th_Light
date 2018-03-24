@@ -128,7 +128,7 @@ class Displayer
     "#{b_values[6]} | #{b_values[7]} | #{b_values[8]} \n"
   end
 
-  def ask_for_position(active_player, board)
+  def ask_for_number(active_player, board)
     puts "#{active_player.name}, pick a spot"
     while true do
       position = gets.chomp
