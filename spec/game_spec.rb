@@ -78,4 +78,15 @@ describe Game do
     end
   end
 
+  context 'game in progress' do
+    describe '#switch_active_player' do
+      it 'changes the active player' do
+        game.set_active_player(:human)
+        game.set_opponent(:computer)
+        game.switch_active_player
+        expect(game.active_player).to eq(:computer)
+      end
+    end
+  end
+
 end
