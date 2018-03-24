@@ -34,15 +34,33 @@ describe Displayer do
       end
     end
     describe '#single_mode_name_sign' do
-      it 'informs of mode, asks for user name and sign and returns them' do
+      it 'asks for user name and sign and returns them on valid input' do
         displayer.stub(:gets).and_return("Justyna\n", "J\n")
         expect(displayer.single_mode_name_sign).to eq(["Justyna", "J"])
       end
+      it 'asks for user name and sign and doesnt return them on invalid input' do
+        displayer.stub(:gets).and_return("Justyna\n", "JZ\n", "J\n")
+        expect{displayer.single_mode_name_sign}.to output(
+          "You've picked the human vs computer mode\nEnter name\n" +
+          "Justyna, enter one letter sign to identify you on the board eg. X or O\n" +
+          "Please write only one character\n"
+        ).to_stdout
+      end
     end
     describe '#multi_mode_names_signs' do
-      it 'informs of mode, asks for users names and returns them in an array' do
+      it 'asks for users names and returns them in an array on valid input' do
         displayer.stub(:gets).and_return("Justyna\n", "J\n", "Kota\n", "K\n")
         expect(displayer.multi_mode_names_signs).to eq(["Justyna", "J", "Kota", "K"])
+      end
+      it 'asks for users names and doesnt return them on invalid input' do
+        displayer.stub(:gets).and_return("Justyna\n", "JZ\n", "J\n", "Kota\n", "K\n")
+        expect{displayer.multi_mode_names_signs}.to output(
+          "You've picked the human vs human mode\nFirst player\nEnter name\n" +
+          "Justyna, enter one letter sign to identify you on the board eg. X or O\n" +
+          "Please write only one character\n" +
+          "Second player\nEnter name\n" +
+          "Kota, enter one letter sign to identify you on the board eg. X or O\n"
+        ).to_stdout
       end
     end
     describe '#computer_mode' do
