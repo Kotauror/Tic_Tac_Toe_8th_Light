@@ -139,7 +139,7 @@ describe Displayer do
       it 'In case of invalid input - asks again' do
         allow(displayer).to receive(:gets).and_return("1\n", "2\n")
         expect{displayer.ask_for_position(active_player, ["X", "2", "3", "4", "5", "6", "7", "8", "9"])}.to output(
-          "justyna, pick a spot\n\e[0;31;49mThis spot is not available\e[0m\n"
+          "justyna, pick a spot\n\e[0;31;49mThis spot is already taken\e[0m\n"
         ).to_stdout
       end
     end

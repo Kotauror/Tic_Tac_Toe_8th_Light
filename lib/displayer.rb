@@ -132,10 +132,12 @@ class Displayer
     puts "#{active_player.name}, pick a spot"
     while true do
       position = gets.chomp
-      if board_values.include?(position) then
-        return position
+      if position.to_i == 0 then
+        puts "Put a number of a non-taken field".red
+      elsif !board_values.include?(position) then
+        puts "This spot is already taken".red
       else
-        puts "This spot is not available".red
+        return position
       end
     end
   end
