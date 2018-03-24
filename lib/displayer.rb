@@ -129,6 +129,7 @@ class Displayer
   end
 
   def ask_for_position(active_player, board_values)
+    puts "#{active_player.name}, pick a spot"
     while true do
       position = gets.chomp.to_s
       if board_values.include?(position) then
