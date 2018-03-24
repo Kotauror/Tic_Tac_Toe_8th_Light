@@ -128,20 +128,13 @@ class Displayer
     "#{b_values[6]} | #{b_values[7]} | #{b_values[8]} \n"
   end
 
-  def ask_for_position(active_player, board_values)
+  def ask_for_position(active_player, board)
     puts "#{active_player.name}, pick a spot"
     while true do
       position = gets.chomp
-      if position.to_i == 0 then
-        puts "Put a number of a non-taken field".red
-      elsif !board_values.include?(position) then
-        puts "This spot is already taken".red
-      else
-        return position
-      end
+      return position if board.is_valid?(position)
+      puts "Put a number of a non-taken field".red
     end
   end
-
-
 
 end
