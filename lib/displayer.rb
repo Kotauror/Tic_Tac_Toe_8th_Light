@@ -11,10 +11,22 @@ class Displayer
     puts "Put three signs in a row in order to win"
   end
 
-  def display_mode_information
+  def set_player_mode
     puts "Enter 1 to pick human vs computer"
     puts "Enter 2 to pick human vs human"
     puts "Enter 3 to pick computer vs computer"
+    while true do
+      mode = gets.chomp.to_s
+      if mode == "1" then
+        return mode
+      elsif mode == "2" then
+        return mode
+      elsif mode == "3" then
+        return mode
+      else
+        puts "Please enter 1, 2 or 3"
+      end
+    end
   end
 
   def single_mode_name_sign

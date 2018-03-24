@@ -9,16 +9,12 @@ def start_game
   @game = Game.new
   @displayer = Displayer.new
   @displayer.welcome
-  game_mode
+  set_player_mode
   player_order
 end
 
-def game_mode
-  @displayer.display_mode_information
-  set_mode_and_players(STDIN.gets.chomp)
-end
-
-def set_mode_and_players(number)
+def set_player_mode
+  number = @displayer.set_player_mode
   case number
   when "1"
     @game.set_up_mode("S")
