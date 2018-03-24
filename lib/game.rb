@@ -1,8 +1,9 @@
 require_relative 'board'
+require_relative 'displayer'
 
 class Game
 
-  attr_reader :mode, :player1, :player2, :active_player, :opponent, :board
+  attr_reader :mode, :player1, :player2, :active_player, :opponent, :board, :displayer
 
   def initialize
     @mode = nil
@@ -11,6 +12,7 @@ class Game
     @active_player = nil
     @opponent = nil
     @board = Board.new
+    @displayer = Displayer.new
   end
 
   def set_up_mode(string)
