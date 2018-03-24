@@ -13,6 +13,7 @@ class Game
     @opponent = nil
     @board = Board.new
     @displayer = displayer
+    @round = 0
   end
 
   def set_up_mode(string)
@@ -43,6 +44,9 @@ class Game
     @board.put_sign_on_board(@active_player, picked_number.to_i)
     if !@board.is_game_won? && !@board.is_tie? then
       switch_active_player
+      one_round
+    else
+      puts "Game over yo!"
     end
   end
 

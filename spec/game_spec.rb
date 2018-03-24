@@ -33,6 +33,9 @@ describe Game do
       it 'accepts displayer as an argument' do
         expect(game.displayer).not_to eq(nil)
       end
+      it 'has rounds counter hat equals zero' do
+        expect(game.displayer).not_to eq(0)
+      end
     end
   end
 
