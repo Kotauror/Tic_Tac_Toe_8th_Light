@@ -108,18 +108,24 @@ class Displayer
   def set_up_ready
     puts "-------- Set up is ready! --------".light_blue
     puts "You'r game will start in".light_blue
-    sleep(1)
+    # sleep(1)
     puts "5".light_blue
-    sleep(1)
+    # sleep(1)
     puts "4".light_blue
-    sleep(1)
+    # sleep(1)
     puts "3".light_blue
-    sleep(1)
+    # sleep(1)
     puts "2".light_blue
-    sleep(1)
+    # sleep(1)
     puts "1".light_blue
-    sleep(1)
+    # sleep(1)
     system "clear"
+  end
+
+  def show_board(b_values)
+    puts "#{b_values[0]} | #{b_values[1]} | #{b_values[2]} \n===+===+===\n" +
+    "#{b_values[3]} | #{b_values[4]} | #{b_values[5]} \n===+===+===\n" +
+    "#{b_values[6]} | #{b_values[7]} | #{b_values[8]} \n"
   end
 
 end

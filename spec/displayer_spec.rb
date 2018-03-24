@@ -3,6 +3,8 @@ require 'displayer'
 describe Displayer do
 
   subject(:displayer) { described_class.new }
+  let(:board) {double('board', :values => ["1", "2", "3", "4", "5", "6", "7", "8", "9"])}
+
 
   before do
     allow($stdout).to receive(:write)
@@ -105,17 +107,27 @@ describe Displayer do
         ).to_stdout
       end
     end
+  end
 
-    context 'Setup is ready' do
-      describe '#set_up_ready' do
-        it 'tells the setup is ready, counts down from 5 to 1 and cleans the terminal window' do
-          allow(displayer).to receive(:sleep)
-          expect{displayer.set_up_ready}.to output(
-            "\e[0;94;49m-------- Set up is ready! --------\e[0m\n" +
-            "\e[0;94;49mYou'r game will start in\e[0m\n\e[0;94;49m5\e[0m\n" +
-            "\e[0;94;49m4\e[0m\n\e[0;94;49m3\e[0m\n\e[0;94;49m2\e[0m\n\e[0;94;49m1\e[0m\n"
-          ).to_stdout
-        end
+  context 'Setup is ready' do
+    describe '#set_up_ready' do
+      it 'tells the setup is ready, counts down from 5 to 1 and cleans the terminal window' do
+        allow(displayer).to receive(:sleep)
+        expect{displayer.set_up_ready}.to output(
+          "\e[0;94;49m-------- Set up is ready! --------\e[0m\n" +
+          "\e[0;94;49mYou'r game will start in\e[0m\n\e[0;94;49m5\e[0m\n" +
+          "\e[0;94;49m4\e[0m\n\e[0;94;49m3\e[0m\n\e[0;94;49m2\e[0m\n\e[0;94;49m1\e[0m\n"
+        ).to_stdout
+      end
+    end
+  end
+
+  context 'Game is in progress' do
+    describe '#show_board' do
+      it 'shows the current state of board' do
+        expect{displayer.show_board(board.values)}.to output(
+          "1 | 2 | 3 \n===+===+===\n4 | 5 | 6 \n===+===+===\n7 | 8 | 9 \n"
+        ).to_stdout
       end
     end
   end

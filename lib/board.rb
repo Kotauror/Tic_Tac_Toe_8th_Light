@@ -1,9 +1,9 @@
 class Board
 
-  attr_reader :board_values
+  attr_reader :values
 
   def initialize
-    @board_values = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    @values = ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
   end
 
 end
