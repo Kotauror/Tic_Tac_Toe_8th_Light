@@ -11,7 +11,8 @@ class Board
   end
 
   def is_valid?(picked_number)
-    picked_number.to_i != 0 && @values.include?(picked_number) #non-numeric-string.to_i == 0
+    # non-numeric-string.to_i == 0
+    picked_number.to_i != 0 && @values.include?(picked_number)
   end
 
   def is_game_won?
@@ -32,7 +33,8 @@ class Board
   private
 
   def all_spots_taken?
-    (["1", "2", "3", "4", "5", "6", "7", "8", "9"] - @values) == ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
+    # array1 - array2 == [elements from 1 missing in 2]
+    (["1", "2", "3", "4", "5", "6", "7", "8", "9"] - @values).length == 9
   end
 
 end

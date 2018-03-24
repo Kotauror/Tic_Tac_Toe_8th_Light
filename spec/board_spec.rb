@@ -112,13 +112,6 @@ describe Board do
       board.put_sign_on_board(opponent, "9")
       expect(board.is_tie?).to eq false
     end
-
   end
 
-
-end
-
-
-def is_valid?(position)
-  position.to_i != 0 && @values.include?(position)
 end
