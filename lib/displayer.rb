@@ -24,7 +24,7 @@ class Displayer
       when "3"
         return mode
       else
-        puts "Please enter 1, 2 or 3"
+        puts "Please enter 1, 2 or 3".red
       end
     end
   end
@@ -63,7 +63,7 @@ class Displayer
         puts "#{name2} is starting"
         return number
       else
-        puts "Please enter 1 or 2"
+        puts "Please enter 1 or 2".red
       end
     end
   end
@@ -88,7 +88,7 @@ class Displayer
     while true do
       sign = gets.chomp
       return sign if sign.length == 1
-      puts "Please write only one character"
+      puts "Please enter only one character".red
     end
   end
 
@@ -98,9 +98,9 @@ class Displayer
       if sign.length == 1 && sign != user_one_data[1] then
         return sign
       elsif sign.length != 1 then
-        puts "Please write only one character"
+        puts "Please enter only one character".red
       elsif sign == user_one_data[1] then
-        puts "Pleace write character other than #{user_one_data[1]}"
+        puts "Pleace enter character other than #{user_one_data[1]}".red
       end
     end
   end

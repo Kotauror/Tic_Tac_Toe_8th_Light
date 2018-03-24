@@ -29,7 +29,8 @@ describe Displayer do
         displayer.stub(:gets).and_return("5\n", "1\n")
         expect{displayer.set_player_mode}.to output(
           "Enter 1 to pick human vs computer\nEnter 2 to pick human vs human\n" +
-          "Enter 3 to pick computer vs computer\nPlease enter 1, 2 or 3\n"
+          "Enter 3 to pick computer vs computer\n" +
+          "\e[0;31;49mPlease enter 1, 2 or 3\e[0m\n"
         ).to_stdout
       end
     end
@@ -50,7 +51,7 @@ describe Displayer do
         expect{displayer.single_mode_name_sign}.to output(
           "You've picked the human vs computer mode\nEnter name\n" +
           "Justyna, enter one letter sign to identify you on the board eg. X or O\n" +
-          "Please write only one character\n"
+          "\e[0;31;49mPlease enter only one character\e[0m\n"
         ).to_stdout
       end
     end
@@ -64,7 +65,7 @@ describe Displayer do
         expect{displayer.multi_mode_names_signs}.to output(
           "You've picked the human vs human mode\nFirst player\nEnter name\n" +
           "Justyna, enter one letter sign to identify you on the board eg. X or O\n" +
-          "Please write only one character\n" +
+          "\e[0;31;49mPlease enter only one character\e[0m\n" +
           "Second player\nEnter name\n" +
           "Kota, enter one letter sign to identify you on the board eg. X or O\n"
         ).to_stdout
@@ -76,7 +77,7 @@ describe Displayer do
           "Justyna, enter one letter sign to identify you on the board eg. X or O\n" +
           "Second player\nEnter name\n" +
           "Kota, enter one letter sign to identify you on the board eg. X or O\n" +
-          "Pleace write character other than J\n"
+          "\e[0;31;49mPleace enter character other than J\e[0m\n"
         ).to_stdout
       end
     end
@@ -100,7 +101,7 @@ describe Displayer do
         displayer.stub(:gets).and_return("3", "1")
         expect{displayer.get_order_information("Justyna", "Kota")}.to output(
           "If Justyna shall start enter 1, if Kota shall start enter 2\n" +
-          "Please enter 1 or 2\nJustyna is starting\n"
+          "\e[0;31;49mPlease enter 1 or 2\e[0m\nJustyna is starting\n"
         ).to_stdout
       end
     end
