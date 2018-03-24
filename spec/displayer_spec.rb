@@ -131,6 +131,11 @@ describe Displayer do
           "1 | 2 | 3 \n===+===+===\n4 | 5 | 6 \n===+===+===\n7 | 8 | 9 \n"
         ).to_stdout
       end
+      it 'shows the board in colors' do
+        expect{displayer.show_board(partialy_full_board.values, "J", "K")}.to output(
+          "1 | \e[0;94;49mJ\e[0m | 3 \n===+===+===\n4 | 5 | 6 \n===+===+===\n7 | 8 | 9 \n"
+        ).to_stdout
+      end
     end
     describe '#ask_for_position' do
       it 'returns position picked by user on valid input' do
@@ -147,10 +152,14 @@ describe Displayer do
       end
     end
     describe '#color_cell' do
-      it 'colors a cell according to the sign' do
-        expect{displayer.show_board(partialy_full_board.values, "J", "K")}.to output(
-          "1 | \e[0;94;49mJ\e[0m | 3 \n===+===+===\n4 | 5 | 6 \n===+===+===\n7 | 8 | 9 \n"
-        ).to_stdout
+      it "doesn't color a cell when no match with a sign" do
+        expect(displayer.color_cell("1", "J", "K")).to eq("1")
+      end
+      it "colors a cell in light_blue for first player" do
+        expect(displayer.color_cell("J", "J", "K")).to eq("\e[0;94;49mJ\e[0m")
+      end
+      it "colors a cell in light_green for second player" do
+        expect(displayer.color_cell("K", "J", "K")).to eq("\e[0;92;49mK\e[0m")
       end
     end
   end
