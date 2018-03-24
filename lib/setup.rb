@@ -19,8 +19,9 @@ def set_player_mode
   when "1"
     @game.set_up_mode("S")
     user_data = @displayer.single_mode_name_sign
+    @displayer.inform_of_computer_sing
     @game.set_player_1(Human.new(user_data[0], user_data[1]))
-    @game.set_player_2(Computer.new("Computer", "C"))
+    @game.set_player_2(Computer.new("Computer", "#"))
   when "2"
     @game.set_up_mode("M")
     users_data = @displayer.multi_mode_names_signs

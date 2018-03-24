@@ -34,6 +34,10 @@ class Displayer
     ask_for_name_and_sign
   end
 
+  def inform_of_computer_sing
+    puts "The computer's sign will be #"
+  end
+
   def multi_mode_names_signs
     puts "You've picked the human vs human mode"
     puts "First player"

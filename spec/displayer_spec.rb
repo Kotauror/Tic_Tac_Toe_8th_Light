@@ -33,6 +33,13 @@ describe Displayer do
         ).to_stdout
       end
     end
+    describe '#inform_of_computer_sing' do
+      it "informs the user in single mode of computer's sign" do
+        expect{displayer.inform_of_computer_sing}.to output(
+          "The computer's sign will be #\n"
+        ).to_stdout
+      end
+    end
     describe '#single_mode_name_sign' do
       it 'asks for user name and sign and returns them on valid input' do
         displayer.stub(:gets).and_return("Justyna\n", "J\n")
@@ -52,7 +59,7 @@ describe Displayer do
         displayer.stub(:gets).and_return("Justyna\n", "J\n", "Kota\n", "K\n")
         expect(displayer.multi_mode_names_signs).to eq(["Justyna", "J", "Kota", "K"])
       end
-      it 'asks for users names and doesnt return them on invalid input' do
+      it 'asks for users names and doesnt return them on invalid input - too long sing' do
         displayer.stub(:gets).and_return("Justyna\n", "JZ\n", "J\n", "Kota\n", "K\n")
         expect{displayer.multi_mode_names_signs}.to output(
           "You've picked the human vs human mode\nFirst player\nEnter name\n" +
