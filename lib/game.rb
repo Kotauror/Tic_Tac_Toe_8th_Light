@@ -38,8 +38,7 @@ class Game
   end
 
   def one_round
-    board_values = @board.values
-    @displayer.show_board(board_values)
+    @displayer.show_board(@board.values)
   end
 
 end
