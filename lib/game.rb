@@ -38,8 +38,9 @@ class Game
   end
 
   def one_round
-    @displayer.show_board(@board.values) #show board
-    @displayer.ask_for_position(@active_player, @board.values) #ask for position
+    @displayer.show_board(@board.values)
+    picked_position = @displayer.ask_for_position(@active_player, @board.values)
+    @board.put_sign_on_board(@active_player, picked_position.to_i)
   end
 
 end
