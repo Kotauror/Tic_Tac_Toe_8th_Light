@@ -39,13 +39,14 @@ class Game
   end
 
   def one_round
-    @displayer.show_board(@board.values)
+    @displayer.show_board(@board.values, @player1.sign, @player2.sign)
     picked_number = @displayer.ask_for_number(@active_player, @board)
     @board.put_sign_on_board(@active_player, picked_number.to_i)
     if !@board.is_game_won? && !@board.is_tie? then
       switch_active_player
       one_round
     else
+      @displayer.show_board(@board.values, @player1.sign, @player2.sign)
       puts "Game over yo!"
     end
   end

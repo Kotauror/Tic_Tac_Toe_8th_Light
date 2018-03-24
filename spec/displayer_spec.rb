@@ -4,7 +4,7 @@ describe Displayer do
 
   subject(:displayer) { described_class.new }
   let(:board) {double('board', :values => ["1", "2", "3", "4", "5", "6", "7", "8", "9"])}
-  let(:active_player) {double('active player', :name => "justyna")}
+  let(:active_player) {double('active player', :name => "justyna", :sign => "J")}
 
 
   before do
@@ -126,7 +126,7 @@ describe Displayer do
   context 'Game is in progress' do
     describe '#show_board' do
       it 'shows the current state of board' do
-        expect{displayer.show_board(board.values)}.to output(
+        expect{displayer.show_board(board.values, "J", "I")}.to output(
           "1 | 2 | 3 \n===+===+===\n4 | 5 | 6 \n===+===+===\n7 | 8 | 9 \n"
         ).to_stdout
       end

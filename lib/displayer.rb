@@ -122,10 +122,10 @@ class Displayer
     system "clear"
   end
 
-  def show_board(b_values)
-    puts "#{b_values[0]} | #{b_values[1]} | #{b_values[2]} \n===+===+===\n" +
-    "#{b_values[3]} | #{b_values[4]} | #{b_values[5]} \n===+===+===\n" +
-    "#{b_values[6]} | #{b_values[7]} | #{b_values[8]} \n"
+  def show_board(b_values, sign_1, sign_2)
+    puts "#{return_colored(b_values[0], sign_1, sign_2)} | #{return_colored(b_values[1], sign_1, sign_2)} | #{return_colored(b_values[2], sign_1, sign_2)} \n===+===+===\n" +
+      "#{return_colored(b_values[3], sign_1, sign_2)} | #{return_colored(b_values[4], sign_1, sign_2)} | #{return_colored(b_values[5], sign_1, sign_2)} \n===+===+===\n" +
+      "#{return_colored(b_values[6], sign_1, sign_2)} | #{return_colored(b_values[7], sign_1, sign_2)} | #{return_colored(b_values[8], sign_1, sign_2)} \n"
   end
 
   def ask_for_number(active_player, board)
@@ -134,6 +134,16 @@ class Displayer
       position = gets.chomp
       return position if board.is_valid?(position)
       puts "Put a number of a non-taken field".red
+    end
+  end
+
+  def return_colored(cell, sign_1, sign_2)
+    if cell == sign_1 then
+      return cell.light_blue
+    elsif cell == sign_2 then
+      return cell.light_green
+    else
+      return cell
     end
   end
 
