@@ -128,4 +128,17 @@ class Displayer
     "#{b_values[6]} | #{b_values[7]} | #{b_values[8]} \n"
   end
 
+  def ask_for_position(active_player, board_values)
+    while true do
+      position = gets.chomp.to_s
+      if board_values.include?(position) then
+        return position
+      else
+        puts "This spot is not available".red
+      end
+    end
+  end
+
+
+
 end

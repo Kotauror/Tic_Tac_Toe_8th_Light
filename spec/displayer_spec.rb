@@ -4,6 +4,7 @@ describe Displayer do
 
   subject(:displayer) { described_class.new }
   let(:board) {double('board', :values => ["1", "2", "3", "4", "5", "6", "7", "8", "9"])}
+  let(:active_player) {double 'active player'}
 
 
   before do
@@ -127,6 +128,18 @@ describe Displayer do
       it 'shows the current state of board' do
         expect{displayer.show_board(board.values)}.to output(
           "1 | 2 | 3 \n===+===+===\n4 | 5 | 6 \n===+===+===\n7 | 8 | 9 \n"
+        ).to_stdout
+      end
+    end
+    describe '#ask_for_position' do
+      it 'returns position picked by user on valid input' do
+        allow(displayer).to receive(:gets).and_return("1")
+        expect(displayer.ask_for_position(:active_player, ["1", "2", "3", "4", "5", "6", "7", "8", "9"])).to eq("1")
+      end
+      it 'In case of invalid input - asks again' do
+        allow(displayer).to receive(:gets).and_return("1\n", "2\n")
+        expect{displayer.ask_for_position(:active_player, ["X", "2", "3", "4", "5", "6", "7", "8", "9"])}.to output(
+          "\e[0;31;49mThis spot is not available\e[0m\n"
         ).to_stdout
       end
     end
