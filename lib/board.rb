@@ -14,7 +14,7 @@ class Board
     picked_number.to_i != 0 && @values.include?(picked_number) #non-numeric-string.to_i == 0
   end
 
-  def game_is_over?
+  def is_game_won?
     [values[0], values[1], values[2]].uniq.length == 1 ||
     [values[3], values[4], values[5]].uniq.length == 1 ||
     [values[6], values[7], values[8]].uniq.length == 1 ||
@@ -23,6 +23,16 @@ class Board
     [values[2], values[5], values[8]].uniq.length == 1 ||
     [values[0], values[4], values[8]].uniq.length == 1 ||
     [values[2], values[4], values[6]].uniq.length == 1
+  end
+
+  def is_tie?
+    !is_game_won? && all_spots_taken?
+  end
+
+  private
+
+  def all_spots_taken?
+    (["1", "2", "3", "4", "5", "6", "7", "8", "9"] - @values) == ["1", "2", "3", "4", "5", "6", "7", "8", "9"]
   end
 
 end
