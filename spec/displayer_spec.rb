@@ -69,6 +69,16 @@ describe Displayer do
           "Kota, enter one letter sign to identify you on the board eg. X or O\n"
         ).to_stdout
       end
+      it 'asks for users names and doesnt return them on invalid input - same sign twice' do
+        displayer.stub(:gets).and_return("Justyna\n", "J\n", "Kota\n", "J\n", "K\n")
+        expect{displayer.multi_mode_names_signs}.to output(
+          "You've picked the human vs human mode\nFirst player\nEnter name\n" +
+          "Justyna, enter one letter sign to identify you on the board eg. X or O\n" +
+          "Second player\nEnter name\n" +
+          "Kota, enter one letter sign to identify you on the board eg. X or O\n" +
+          "Pleace write character other than J\n"
+        ).to_stdout
+      end
     end
     describe '#computer_mode' do
       it 'informs of mode, informs the user of computers names' do

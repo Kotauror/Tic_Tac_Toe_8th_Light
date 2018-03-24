@@ -34,22 +34,22 @@ class Displayer
     ask_for_name_and_sign
   end
 
-  def inform_of_computer_sing
-    puts "The computer's sign will be #"
-  end
-
   def multi_mode_names_signs
     puts "You've picked the human vs human mode"
     puts "First player"
     user_one_data = ask_for_name_and_sign
     puts "Second player"
-    user_two_data = ask_for_name_and_sign
+    user_two_data = ask_for_name_and_sign_seond_player(user_one_data)
     return user_one_data + user_two_data
   end
 
   def computer_mode
     puts "You've picked the computer vs computer"
     puts "The computers will be named: Computer 1 and Computer 2 and will have signs 'C' and 'K'"
+  end
+
+  def inform_of_computer_sing
+    puts "The computer's sign will be #"
   end
 
   def get_order_information(name1, name2)
@@ -76,11 +76,32 @@ class Displayer
     return [name, sign]
   end
 
+  def ask_for_name_and_sign_seond_player(user_one_data)
+    puts "Enter name"
+    name = gets.chomp
+    puts "#{name}, enter one letter sign to identify you on the board eg. X or O"
+    sign = multi_game_sign_guard(user_one_data)
+    return [name, sign]
+  end
+
   def single_character_guard
     while true do
       sign = gets.chomp
       return sign if sign.length == 1
       puts "Please write only one character"
+    end
+  end
+
+  def multi_game_sign_guard(user_one_data)
+    while true do
+      sign = gets.chomp
+      if sign.length == 1 && sign != user_one_data[1] then
+        return sign
+      elsif sign.length != 1 then
+        puts "Please write only one character"
+      elsif sign == user_one_data[1] then
+        puts "Pleace write character other than #{user_one_data[1]}"
+      end
     end
   end
 
