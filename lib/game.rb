@@ -5,14 +5,14 @@ class Game
 
   attr_reader :mode, :player1, :player2, :active_player, :opponent, :board, :displayer
 
-  def initialize
+  def initialize(displayer)
     @mode = nil
     @player1 = nil
     @player2 = nil
     @active_player = nil
     @opponent = nil
     @board = Board.new
-    @displayer = Displayer.new
+    @displayer = displayer
   end
 
   def set_up_mode(string)
@@ -35,6 +35,11 @@ class Game
 
   def set_opponent(object)
     @opponent = object
+  end
+
+  def one_round
+    board_values = @board.values
+    @displayer.show_board(board_values)
   end
 
 end

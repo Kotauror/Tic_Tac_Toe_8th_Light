@@ -2,7 +2,8 @@ require 'game'
 
 describe Game do
 
-  subject(:game) { described_class.new }
+  let(:displayer) {double('displayer')}
+  subject(:game) { described_class.new(:displayer) }
   let(:human) {double('human')}
   let(:computer) {double('computer')}
 
@@ -25,6 +26,12 @@ describe Game do
       end
       it 'creates a new board instance of the Board class' do
         expect(game.board).to be_a_kind_of(Board)
+      end
+      it 'creates a new board instance of the Board class' do
+        expect(game.board).to be_a_kind_of(Board)
+      end
+      it 'accepts displayer as an argument' do
+        expect(game.displayer).not_to eq(nil)
       end
     end
   end

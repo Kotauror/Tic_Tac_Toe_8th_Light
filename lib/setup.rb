@@ -6,10 +6,13 @@ require_relative "board"
 require_relative "displayer"
 
 def start_setup
-  @game = Game.new
+  @displayer = Displayer.new
+  @game = Game.new(@displayer)
   @game.displayer.welcome
   set_player_mode
   player_order
+  @game.displayer.set_up_ready
+  start_game
 end
 
 def set_player_mode
@@ -46,7 +49,10 @@ def player_order
     @game.set_active_player(@game.player2)
     @game.set_opponent(@game.player1)
   end
-  @game.displayer.set_up_ready
+end
+
+def start_game
+  @game.one_round
 end
 
 start_setup
