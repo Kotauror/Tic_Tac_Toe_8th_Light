@@ -4,6 +4,7 @@ describe Displayer do
 
   subject(:displayer) { described_class.new }
   let(:board) {double('board', :values => ["1", "2", "3", "4", "5", "6", "7", "8", "9"])}
+  let(:partialy_full_board) {double('board', :values => ["1", "J", "3", "4", "5", "6", "7", "8", "9"])}
   let(:active_player) {double('active player', :name => "justyna", :sign => "J")}
 
 
@@ -142,6 +143,13 @@ describe Displayer do
         allow(board).to receive(:is_valid?).and_return(false, true)
         expect{displayer.ask_for_number(active_player, board)}.to output(
           "justyna, pick a spot\n\e[0;31;49mPut a number of a non-taken field\e[0m\n"
+        ).to_stdout
+      end
+    end
+    describe '#color_cell' do
+      it 'colors a cell according to the sign' do
+        expect{displayer.show_board(partialy_full_board.values, "J", "K")}.to output(
+          "1 | \e[0;94;49mJ\e[0m | 3 \n===+===+===\n4 | 5 | 6 \n===+===+===\n7 | 8 | 9 \n"
         ).to_stdout
       end
     end

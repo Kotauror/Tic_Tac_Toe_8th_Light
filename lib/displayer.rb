@@ -122,10 +122,13 @@ class Displayer
     system "clear"
   end
 
-  def show_board(b_values, sign_1, sign_2)
-    puts "#{return_colored(b_values[0], sign_1, sign_2)} | #{return_colored(b_values[1], sign_1, sign_2)} | #{return_colored(b_values[2], sign_1, sign_2)} \n===+===+===\n" +
-      "#{return_colored(b_values[3], sign_1, sign_2)} | #{return_colored(b_values[4], sign_1, sign_2)} | #{return_colored(b_values[5], sign_1, sign_2)} \n===+===+===\n" +
-      "#{return_colored(b_values[6], sign_1, sign_2)} | #{return_colored(b_values[7], sign_1, sign_2)} | #{return_colored(b_values[8], sign_1, sign_2)} \n"
+  def show_board(board_values, sign_1, sign_2)
+    colored_cells = board_values.map { |one_cell|
+      color_cell(one_cell, sign_1, sign_2)
+    }
+     puts "#{colored_cells[0]} | #{colored_cells[1]} | #{colored_cells[2]} \n===+===+===\n" +
+       "#{colored_cells[3]} | #{colored_cells[4]} | #{colored_cells[5]} \n===+===+===\n" +
+       "#{colored_cells[6]} | #{colored_cells[7]} | #{colored_cells[8]} \n"
   end
 
   def ask_for_number(active_player, board)
@@ -137,7 +140,7 @@ class Displayer
     end
   end
 
-  def return_colored(cell, sign_1, sign_2)
+  def color_cell(cell, sign_1, sign_2)
     if cell == sign_1 then
       return cell.light_blue
     elsif cell == sign_2 then
