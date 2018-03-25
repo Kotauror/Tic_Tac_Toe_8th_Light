@@ -93,6 +93,8 @@ class Displayer
         puts "Please enter only one character".red
       elsif is_numeric?(sign)
         puts "Please don't enter numbers other than 0".red
+      elsif sign == "#"
+        puts "Sorry, this sign will be used by the computer".red
       else
         return sign
       end

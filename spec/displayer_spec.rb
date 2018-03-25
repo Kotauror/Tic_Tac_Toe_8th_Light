@@ -67,6 +67,14 @@ describe Displayer do
           "\e[0;31;49mPlease don't enter numbers other than 0\e[0m\n"
         ).to_stdout
       end
+      it 'In case of invalid input (computers sign) - asks again' do
+        allow(displayer).to receive(:gets).and_return("Justyna\n", "#\n", "J\n")
+        expect{displayer.single_mode_name_sign}.to output(
+          "You've picked the human vs computer mode\nEnter name\n" +
+          "Justyna, enter one letter sign to identify you on the board eg. X or O\n" +
+          "\e[0;31;49mSorry, this sign will be used by the computer\e[0m\n"
+        ).to_stdout
+      end
     end
     describe '#multi_game_sign_guard' do
       it 'asks for users names and returns them in an array on valid input' do
@@ -83,16 +91,6 @@ describe Displayer do
           "Kota, enter one letter sign to identify you on the board eg. X or O\n"
         ).to_stdout
       end
-      it 'In case of invalid input (same sign twice) - asks again' do
-        allow(displayer).to receive(:gets).and_return("Justyna\n", "J\n", "Kota\n", "J\n", "K\n")
-        expect{displayer.multi_mode_names_signs}.to output(
-          "You've picked the human vs human mode\nFirst player\nEnter name\n" +
-          "Justyna, enter one letter sign to identify you on the board eg. X or O\n" +
-          "Second player\nEnter name\n" +
-          "Kota, enter one letter sign to identify you on the board eg. X or O\n" +
-          "\e[0;31;49mPleace enter character other than J\e[0m\n"
-        ).to_stdout
-      end
       it 'In case of invalid input (sign is numeric(1-9)) - asks again' do
         allow(displayer).to receive(:gets).and_return("Justyna\n", "J\n", "Kota\n", "7\n", "K\n")
         expect{displayer.multi_mode_names_signs}.to output(
@@ -101,6 +99,16 @@ describe Displayer do
           "Second player\nEnter name\n" +
           "Kota, enter one letter sign to identify you on the board eg. X or O\n" +
           "\e[0;31;49mPlease don't enter numbers other than 0\e[0m\n"
+        ).to_stdout
+      end
+      it 'In case of invalid input (same sign twice) - asks again' do
+        allow(displayer).to receive(:gets).and_return("Justyna\n", "J\n", "Kota\n", "J\n", "K\n")
+        expect{displayer.multi_mode_names_signs}.to output(
+          "You've picked the human vs human mode\nFirst player\nEnter name\n" +
+          "Justyna, enter one letter sign to identify you on the board eg. X or O\n" +
+          "Second player\nEnter name\n" +
+          "Kota, enter one letter sign to identify you on the board eg. X or O\n" +
+          "\e[0;31;49mPleace enter character other than J\e[0m\n"
         ).to_stdout
       end
     end
