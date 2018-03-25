@@ -3,6 +3,7 @@ GEM
   specs:
     colorize (0.8.1)
     diff-lcs (1.3)
+    rmagick (2.16.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -16,13 +17,16 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
+    tco (0.1.8)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   colorize
+  rmagick
   rspec
+  tco
 
 BUNDLED WITH
    1.16.1
