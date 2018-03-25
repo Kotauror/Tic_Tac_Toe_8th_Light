@@ -5,6 +5,8 @@ describe Computer do
   subject(:computer) { described_class.new("Computer 1", "C") }
   let(:board) {double('board', :values => ["1", "2", "3", "4", "5", "6", "7", "8", "9"])}
   let(:board_without_4) {double('board', :values => ["1", "2", "3", "J", "5", "6", "7", "8", "9"])}
+  let(:board_winning_for_active) {double('board', :values => ["C", "C", "3", "4", "5", "6", "7", "8", "9"])}
+  let(:board_winning_for_passive) {double('board', :values => ["K", "K", "3", "J", "5", "6", "7", "8", "9"])}
 
   context 'During the game' do
     describe 'select_number' do
@@ -20,12 +22,12 @@ describe Computer do
       end
     end
   end
-  describe 'elaborate move' do
-    it 'picks the best move - picks 4 when available' do
-      expect(computer.elaborate_move(board)).to eq(4)
+  describe 'pick_4_when_possible' do
+    it 'picks 4 when available' do
+      expect(computer.pick_4_when_possible(board)).to eq(4)
     end
-    it 'doesnt pick 4 when not available' do
-      expect(computer.elaborate_move(board_without_4)).not_to eq(4)
+    it 'doesn\'t pick 4 when not available' do
+      expect(computer.pick_4_when_possible(board_without_4)).not_to eq(4)
     end
   end
 
