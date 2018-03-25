@@ -27,9 +27,6 @@ describe Game do
       it 'creates a new board instance of the Board class' do
         expect(game.board).to be_a_kind_of(Board)
       end
-      it 'creates a new board instance of the Board class' do
-        expect(game.board).to be_a_kind_of(Board)
-      end
       it 'accepts displayer as an argument' do
         expect(game.displayer).not_to eq(nil)
       end
