@@ -195,7 +195,7 @@ describe Displayer do
       it 'Announecs the winner' do
         allow(board).to receive(:is_game_won?).and_return true
         expect{displayer.final_score_annoncement(board, opponent)}.to output(
-          "---------------\nkota won\n"
+          "\e[0;33;49m---------------\nkota won\e[0m\n"
         ).to_stdout
       end
       it 'Tells there was a tie' do

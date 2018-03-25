@@ -1,4 +1,6 @@
 require "colorize"
+require "tco"
+require "rmagick"
 
 
 class Displayer
@@ -167,7 +169,8 @@ class Displayer
 
   def final_score_annoncement(board, opponent)
     if board.is_game_won? then
-      puts "---------------\n#{opponent.name} won"
+      puts "---------------\n#{opponent.name} won".yellow
+      system "ruby catpix.rb goblet.png"
     else
       puts "----------------\nIt's a tie\n"
     end
