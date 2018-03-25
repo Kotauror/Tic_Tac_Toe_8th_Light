@@ -41,7 +41,12 @@ class Game
   def one_round
     while !@board.is_game_won? && !@board.is_tie?  do
       @displayer.show_board(@board.values, @player1.sign, @player2.sign)
-      picked_number = @displayer.ask_for_number(@active_player, @board) # only difference between human and computer
+      if @active_player.is_a? Human
+        picked_number = @displayer.ask_for_number(@active_player, @board)
+      else
+        picked_number = @active_player.select_number(@board)
+      end
+      displayer.inform_of_move(@active_player, picked_number)
       @board.put_sign_on_board(@active_player, picked_number.to_i)
       switch_active_player
     end

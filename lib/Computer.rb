@@ -1,7 +1,10 @@
+require_relative 'player'
+
 class Computer < Player
 
-  # def initialize
-  #   # super("kota")
-  # end
+  def select_number(board)
+    sleep(1)
+    board.available_numbers.sample
+  end
 
 end

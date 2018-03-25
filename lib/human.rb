@@ -1,2 +1,4 @@
-class Human < Player 
+require_relative 'player'
+
+class Human < Player
 end
