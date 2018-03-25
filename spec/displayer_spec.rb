@@ -180,6 +180,13 @@ describe Displayer do
         expect(displayer.color_cell("K", "J", "K")).to eq("\e[0;92;49mK\e[0m")
       end
     end
+    describe '#inform_of_move' do
+      it "informs of move" do
+        expect{displayer.inform_of_move(active_player, "5")}.to output(
+          "justyna picked 5\n"
+        ).to_stdout
+      end
+    end
   end
 
 end

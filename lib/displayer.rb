@@ -147,6 +147,10 @@ class Displayer
     end
   end
 
+  def inform_of_move(active_player, picked_number)
+    puts "#{active_player.name} picked #{picked_number}"
+  end
+
   def color_cell(cell, sign_1, sign_2)
     if cell == sign_1 then
       return cell.light_blue
