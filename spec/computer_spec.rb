@@ -45,7 +45,7 @@ describe Computer do
       allow(board_winning_for_passive).to receive(:put_sign_on_board).with("K", "3")
       allow(board_winning_for_passive).to receive(:is_game_won?).and_return true
       allow(board_winning_for_passive).to receive(:put_sign_on_board).with("3", "3")
-      expect(computer.block_opponent(board_winning_for_passive)).to eq(3)
+      expect(computer.block_opponent(board_winning_for_passive, "K")).to eq(3)
     end
   end
 

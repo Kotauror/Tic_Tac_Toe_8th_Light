@@ -48,6 +48,15 @@ class Computer < Player
   end
 
   def block_opponent(board, opponent_sign)
+    board.available_numbers.each { |available_cell|
+      board.put_sign_on_board(opponent_sign, available_cell)
+      if board.is_game_won?
+        board.put_sign_on_board(available_cell, available_cell)
+        return available_cell.to_i
+      else
+        board.put_sign_on_board(available_cell, available_cell)
+      end
+    }
   end
 
 end
