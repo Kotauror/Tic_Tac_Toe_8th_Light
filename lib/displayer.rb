@@ -169,7 +169,7 @@ class Displayer
     if board.is_game_won? then
       puts "---------------\n#{opponent.name} won"
     else
-      puts "It's a tie"
+      puts "----------------\nIt's a tie\n"
     end
   end
 
