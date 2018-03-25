@@ -30,5 +30,13 @@ describe Computer do
       expect(computer.pick_4_when_possible(board_without_4)).not_to eq(4)
     end
   end
+  describe 'pick_winning_position' do
+    it 'picks a winning position when possible' do
+      allow(board_winning_for_active).to receive(:available_numbers).and_return(["C", "C", "3", "4", "5", "6", "7", "8", "9"])
+      allow(board_winning_for_active).to receive(:put_sign_on_board).with(computer, "3")
+      allow(board_winning_for_active).to receive(:is_game_won?).and_return true
+      expect(computer.pick_winning_position(board_winning_for_active)).to eq(3)
+    end
+  end
 
 end

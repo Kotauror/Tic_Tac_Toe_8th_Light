@@ -18,7 +18,7 @@ describe Board do
   context 'Game in progress' do
     describe '#put_sign_on_board' do
       it 'puts a sign picked by the user on the board' do
-        board.put_sign_on_board(active_player, "3")
+        board.put_sign_on_board(active_player.sign, "3")
         expect(board.values).to eq(["1", "2", "J", "4", "5", "6", "7", "8", "9"])
       end
     end
@@ -115,7 +115,7 @@ describe Board do
   end
   describe '#available_numbers' do
     it 'returns an array of available numbers' do
-      board.put_sign_on_board(active_player, "1")
+      board.put_sign_on_board(active_player.sign, "1")
       expect(board.available_numbers).to eq ["2", "3", "4", "5", "6", "7", "8", "9"]
     end
   end
