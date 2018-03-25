@@ -30,7 +30,7 @@ describe Displayer do
         allow(displayer).to receive(:gets).and_return("1\n")
         expect(displayer.set_player_mode).to eq("1")
       end
-      it 'In case of invalid input - asks again' do
+      it 'in case of invalid input - asks again' do
         allow(displayer).to receive(:gets).and_return("5\n", "1\n")
         expect{displayer.set_player_mode}.to output(
           "Enter 1 to pick human vs computer\nEnter 2 to pick human vs human\n" +
@@ -51,7 +51,7 @@ describe Displayer do
         allow(displayer).to receive(:gets).and_return("J\n")
         expect(displayer.single_game_sign_guard).to eq("J")
       end
-      it 'In case of invalid input (too long sign) - asks again' do
+      it 'in case of invalid input (too long sign) - asks again' do
         allow(displayer).to receive(:gets).and_return("Justyna\n", "JZ\n", "J\n")
         expect{displayer.single_mode_name_sign}.to output(
           "You've picked the human vs computer mode\nEnter name\n" +
@@ -59,7 +59,7 @@ describe Displayer do
           "\e[0;31;49mPlease enter only one character\e[0m\n"
         ).to_stdout
       end
-      it 'In case of invalid input (sign is numeric (1-9)) - asks again' do
+      it 'in case of invalid input (sign is numeric (1-9)) - asks again' do
         allow(displayer).to receive(:gets).and_return("Justyna\n", "7\n", "J\n")
         expect{displayer.single_mode_name_sign}.to output(
           "You've picked the human vs computer mode\nEnter name\n" +
@@ -67,7 +67,7 @@ describe Displayer do
           "\e[0;31;49mPlease don't enter numbers other than 0\e[0m\n"
         ).to_stdout
       end
-      it 'In case of invalid input (computers sign) - asks again' do
+      it 'in case of invalid input (computers sign) - asks again' do
         allow(displayer).to receive(:gets).and_return("Justyna\n", "#\n", "J\n")
         expect{displayer.single_mode_name_sign}.to output(
           "You've picked the human vs computer mode\nEnter name\n" +
@@ -81,7 +81,7 @@ describe Displayer do
         allow(displayer).to receive(:gets).and_return("Justyna\n", "J\n", "Kota\n", "K\n")
         expect(displayer.multi_mode_names_signs).to eq(["Justyna", "J", "Kota", "K"])
       end
-      it 'In case of invalid input (too long string) - asks again' do
+      it 'in case of invalid input (too long string) - asks again' do
         allow(displayer).to receive(:gets).and_return("Justyna\n", "JZ\n", "J\n", "Kota\n", "K\n")
         expect{displayer.multi_mode_names_signs}.to output(
           "You've picked the human vs human mode\nFirst player\nEnter name\n" +
@@ -91,7 +91,7 @@ describe Displayer do
           "Kota, enter one letter sign to identify you on the board eg. X or O\n"
         ).to_stdout
       end
-      it 'In case of invalid input (sign is numeric(1-9)) - asks again' do
+      it 'in case of invalid input (sign is numeric(1-9)) - asks again' do
         allow(displayer).to receive(:gets).and_return("Justyna\n", "J\n", "Kota\n", "7\n", "K\n")
         expect{displayer.multi_mode_names_signs}.to output(
           "You've picked the human vs human mode\nFirst player\nEnter name\n" +
@@ -101,7 +101,7 @@ describe Displayer do
           "\e[0;31;49mPlease don't enter numbers other than 0\e[0m\n"
         ).to_stdout
       end
-      it 'In case of invalid input (same sign twice) - asks again' do
+      it 'in case of invalid input (same sign twice) - asks again' do
         allow(displayer).to receive(:gets).and_return("Justyna\n", "J\n", "Kota\n", "J\n", "K\n")
         expect{displayer.multi_mode_names_signs}.to output(
           "You've picked the human vs human mode\nFirst player\nEnter name\n" +
@@ -128,7 +128,7 @@ describe Displayer do
         allow(displayer).to receive(:gets).and_return("1")
         expect(displayer.get_order_information("Justyna", "Kota")).to eq("1")
       end
-      it 'In case of invalid input - asks again' do
+      it 'in case of invalid input - asks again' do
         allow(displayer).to receive(:gets).and_return("3", "1")
         expect{displayer.get_order_information("Justyna", "Kota")}.to output(
           "If Justyna shall start enter 1, if Kota shall start enter 2\n" +
@@ -200,13 +200,13 @@ describe Displayer do
 
   context 'Game is over' do
     describe '#final_score_annoncement' do
-      it 'Announecs the winner' do
+      it 'announecs the winner' do
         allow(board).to receive(:is_game_won?).and_return true
         expect{displayer.final_score_annoncement(board, opponent)}.to output(
           "\e[0;33;49m---------------\nkota won\e[0m\n"
         ).to_stdout
       end
-      it 'Tells there was a tie' do
+      it 'tells there was a tie' do
         allow(board).to receive(:is_game_won?).and_return false
         expect{displayer.final_score_annoncement(board, opponent)}.to output(
           "----------------\nIt's a tie\n"
