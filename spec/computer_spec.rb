@@ -11,14 +11,14 @@ describe Computer do
   context 'During the game' do
     describe 'select_number' do
       it 'selects the elaborate mode' do
-        expect(computer).to receive(:elaborate_move).with board
+        expect(computer).to receive(:elaborate_move).with(board, "K")
         srand(5)
-        computer.select_number(board)
+        computer.select_number(board, "K")
       end
       it 'selects the random mode' do
         expect(computer).to receive(:random_move).with board
         srand(50)
-        computer.select_number(board)
+        computer.select_number(board, "K")
       end
     end
   end
@@ -39,5 +39,15 @@ describe Computer do
       expect(computer.pick_winning_position(board_winning_for_active)).to eq(3)
     end
   end
+  describe 'block_opponent' do
+    it 'blocks opponent when possible' do
+      allow(board_winning_for_passive).to receive(:available_numbers).and_return(["3", "4", "5", "6", "7", "8", "9"])
+      allow(board_winning_for_passive).to receive(:put_sign_on_board).with("K", "3")
+      allow(board_winning_for_passive).to receive(:is_game_won?).and_return true
+      allow(board_winning_for_passive).to receive(:put_sign_on_board).with("3", "3")
+      expect(computer.block_opponent(board_winning_for_passive)).to eq(3)
+    end
+  end
+
 
 end

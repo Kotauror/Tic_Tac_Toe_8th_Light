@@ -4,12 +4,12 @@ require_relative 'board'
 
 class Computer < Player
 
-  def select_number(board)
+  def select_number(board, opponent_sign)
     num = [1,0].sample
     if num == 1
       return random_move(board)
     else
-      return elaborate_move(board)
+      return elaborate_move(board, opponent_sign)
     end
   end
 
@@ -17,12 +17,18 @@ class Computer < Player
     board.available_numbers.sample
   end
 
-  def elaborate_move(board)
-    pick_4_when_possible(board)
-    pick_winning_position(board)
-    # jesli danym ruchem wygramy - daj tam
-    # jesli danym ruchem wygra player - daj tam
-    # zadne - random_move
+  def elaborate_move(board, opponent_sign)
+    position = pick_4_when_possible(board)
+    if position == nil then
+      position = pick_winning_position(board)
+      if position == nil then
+        position = block_opponent(board, opponent_sign)
+        if position == nil then
+          position = random_move(board)
+        end
+      end
+    end
+    return position
   end
 
   def pick_4_when_possible(board)
@@ -39,6 +45,9 @@ class Computer < Player
         board.put_sign_on_board(available_cell, available_cell)
       end
     }
+  end
+
+  def block_opponent(board, opponent_sign)
   end
 
 end

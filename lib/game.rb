@@ -44,7 +44,7 @@ class Game
       if @active_player.is_a? Human
         picked_number = @displayer.ask_for_number(@active_player, @board)
       else
-        picked_number = @active_player.select_number(@board)
+        picked_number = @active_player.select_number(@board, @opponent.sign)
       end
       displayer.inform_of_move(@active_player, picked_number)
       @board.put_sign_on_board(@active_player.sign, picked_number.to_i)
