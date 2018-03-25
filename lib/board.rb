@@ -30,6 +30,12 @@ class Board
     !is_game_won? && all_spots_taken?
   end
 
+  def available_numbers
+    @values.select { |value|
+      value.to_i != 0
+    }
+  end
+
   private
 
   def all_spots_taken?

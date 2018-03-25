@@ -113,5 +113,11 @@ describe Board do
       expect(board.is_tie?).to eq false
     end
   end
+  describe '#available_numbers' do
+    it 'returns an array of available numbers' do
+      board.put_sign_on_board(active_player, "1")
+      expect(board.available_numbers).to eq ["2", "3", "4", "5", "6", "7", "8", "9"]
+    end
+  end
 
 end
