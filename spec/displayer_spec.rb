@@ -6,6 +6,7 @@ describe Displayer do
   let(:board) {double('board', :values => ["1", "2", "3", "4", "5", "6", "7", "8", "9"])}
   let(:partialy_full_board) {double('board', :values => ["1", "J", "3", "4", "5", "6", "7", "8", "9"])}
   let(:active_player) {double('active player', :name => "justyna", :sign => "J")}
+  let(:opponent) {double('opponent', :name => "kota", :sign => "K")}
 
 
   before do
@@ -184,6 +185,17 @@ describe Displayer do
       it "informs of move" do
         expect{displayer.inform_of_move(active_player, "5")}.to output(
           "justyna picked 5\n"
+        ).to_stdout
+      end
+    end
+  end
+
+  context 'Game is over' do
+    describe '#final_score_annoncement' do
+      it 'Announecs the final acore' do
+        allow(board).to receive(:is_game_won?).and_return true
+        expect{displayer.final_score_annoncement(board, opponent)}.to output(
+          "---------------\nkota won\n"
         ).to_stdout
       end
     end

@@ -165,4 +165,12 @@ class Displayer
     (1..9).to_a.include?(s.to_i)
   end
 
+  def final_score_annoncement(board, opponent)
+    if board.is_game_won? then
+      puts "---------------\n#{opponent.name} won"
+    else
+      puts "It's a tie"
+    end
+  end
+
 end

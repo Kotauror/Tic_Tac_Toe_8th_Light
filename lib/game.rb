@@ -38,7 +38,7 @@ class Game
     @opponent = object
   end
 
-  def one_round
+  def game_play
     while !@board.is_game_won? && !@board.is_tie?  do
       @displayer.show_board(@board.values, @player1.sign, @player2.sign)
       if @active_player.is_a? Human
@@ -51,7 +51,7 @@ class Game
       switch_active_player
     end
     @displayer.show_board(@board.values, @player1.sign, @player2.sign)
-    puts "Game over yo!"
+    displayer.final_score_annoncement(@board, @opponent)
   end
 
   def switch_active_player

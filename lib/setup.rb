@@ -52,7 +52,7 @@ def player_order
 end
 
 def start_game
-  @game.one_round
+  @game.game_play
 end
 
 start_setup
