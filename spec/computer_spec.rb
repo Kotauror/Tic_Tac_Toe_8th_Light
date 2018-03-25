@@ -5,7 +5,7 @@ describe Computer do
   subject(:computer) { described_class.new("Computer 1", "C") }
   let(:board) {double('board', :values => ["1", "2", "3", "4", "5", "6", "7", "8", "9"])}
   let(:board_without_4) {double('board', :values => ["1", "2", "3", "J", "5", "6", "7", "8", "9"])}
-  let(:board_winning_for_active) {double('board', :values => ["C", "C", "3", "4", "5", "6", "7", "8", "9"])}
+  let(:board_winning_for_active) {double('board', :values => ["C", "C", "3", "K", "5", "6", "7", "8", "9"])}
   let(:board_winning_for_passive) {double('board', :values => ["K", "K", "3", "J", "5", "6", "7", "8", "9"])}
 
   context 'During the game' do
@@ -32,9 +32,10 @@ describe Computer do
   end
   describe 'pick_winning_position' do
     it 'picks a winning position when possible' do
-      allow(board_winning_for_active).to receive(:available_numbers).and_return(["C", "C", "3", "4", "5", "6", "7", "8", "9"])
-      allow(board_winning_for_active).to receive(:put_sign_on_board).with(computer, "3")
+      allow(board_winning_for_active).to receive(:available_numbers).and_return(["3", "4", "5", "6", "7", "8", "9"])
+      allow(board_winning_for_active).to receive(:put_sign_on_board).with("C", "3")
       allow(board_winning_for_active).to receive(:is_game_won?).and_return true
+      allow(board_winning_for_active).to receive(:put_sign_on_board).with("3", "3")
       expect(computer.pick_winning_position(board_winning_for_active)).to eq(3)
     end
   end
