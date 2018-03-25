@@ -72,7 +72,7 @@ class Displayer
     puts "Enter name"
     name = gets.chomp
     puts "#{name}, enter one letter sign to identify you on the board eg. X or O"
-    sign = single_character_guard
+    sign = single_game_sign_guard
     return [name, sign]
   end
 
@@ -84,23 +84,30 @@ class Displayer
     return [name, sign]
   end
 
-  def single_character_guard
+  def single_game_sign_guard
     while true do
       sign = gets.chomp
-      return sign if sign.length == 1
-      puts "Please enter only one character".red
+      if sign.length != 1
+        puts "Please enter only one character".red
+      elsif is_numeric?(sign)
+        puts "Please don't enter numbers other than 0".red
+      else
+        return sign
+      end
     end
   end
 
   def multi_game_sign_guard(user_one_data)
     while true do
       sign = gets.chomp
-      if sign.length == 1 && sign != user_one_data[1] then
-        return sign
-      elsif sign.length != 1 then
+      if sign.length != 1 then
         puts "Please enter only one character".red
       elsif sign == user_one_data[1] then
         puts "Pleace enter character other than #{user_one_data[1]}".red
+      elsif is_numeric?(sign) then
+        puts "Please don't enter numbers other than 0".red
+      else
+        return sign
       end
     end
   end
@@ -148,6 +155,10 @@ class Displayer
     else
       return cell
     end
+  end
+
+  def is_numeric?(s)
+    (1..9).to_a.include?(s.to_i)
   end
 
 end
