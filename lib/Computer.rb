@@ -12,10 +12,17 @@ class Computer < Player
   end
 
   def random_move(board)
-    # board.available_numbers.sample
+    board.available_numbers.sample
   end
 
   def elaborate_move(board)
+    if board.values.include?("4")
+      return 4
+    end 
+    # jesli ejst 4 - daj 4
+    # jesli danym ruchem wygramy - daj tam
+    # jesli danym ruchem wygra player - daj tam
+    # zadne - random_move
   end
 
 end
