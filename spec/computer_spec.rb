@@ -11,11 +11,13 @@ describe Computer do
   context 'During the game' do
     describe 'select_number' do
       it 'selects elaborate or random mode of picking move' do
+        allow(computer).to receive(:sleep)
         expect(computer).to receive(:elaborate_move).with(board, "K")
         srand(5)
         computer.select_number(board, "K")
       end
       it 'selects the random mode of picking move' do
+        allow(computer).to receive(:sleep)
         expect(computer).to receive(:random_move).with board
         srand(50)
         computer.select_number(board, "K")

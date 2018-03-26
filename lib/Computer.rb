@@ -5,6 +5,7 @@ require_relative 'board'
 class Computer < Player
 
   def select_number(board, opponent_sign)
+    sleep(1)
     [1,0].sample == 1 ? random_move(board) : elaborate_move(board, opponent_sign)
   end
 
