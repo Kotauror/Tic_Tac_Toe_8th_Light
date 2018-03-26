@@ -3,6 +3,8 @@ GEM
   specs:
     colorize (0.8.1)
     diff-lcs (1.3)
+    docile (1.3.0)
+    json (2.1.0)
     rmagick (2.16.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
@@ -17,6 +19,11 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.7.0)
     rspec-support (3.7.1)
+    simplecov (0.16.1)
+      docile (~> 1.1)
+      json (>= 1.8, < 3)
+      simplecov-html (~> 0.10.0)
+    simplecov-html (0.10.2)
     tco (0.1.8)
 
 PLATFORMS
@@ -26,6 +33,7 @@ DEPENDENCIES
   colorize
   rmagick
   rspec
+  simplecov
   tco
 
 BUNDLED WITH
