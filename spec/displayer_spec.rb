@@ -143,7 +143,7 @@ describe Displayer do
       it 'tells the setup is ready, counts down from 5 to 1 and cleans the terminal window' do
         allow(displayer).to receive(:sleep)
         expect{displayer.set_up_ready}.to output(
-          "\e[0;94;49m-------- Set up is ready! --------\e[0m\n" +
+          "\e[0;94;49m-------- Setup is ready! --------\e[0m\n" +
           "\e[0;94;49mYou'r game will start in\e[0m\n\e[0;94;49m5\e[0m\n" +
           "\e[0;94;49m4\e[0m\n\e[0;94;49m3\e[0m\n\e[0;94;49m2\e[0m\n\e[0;94;49m1\e[0m\n"
         ).to_stdout

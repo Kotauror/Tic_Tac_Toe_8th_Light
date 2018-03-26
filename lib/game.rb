@@ -14,7 +14,6 @@ class Game
     @opponent = nil
     @board = Board.new
     @displayer = displayer
-    @round = 0
   end
 
   def set_up_mode(string)
