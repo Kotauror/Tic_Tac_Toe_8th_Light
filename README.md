@@ -10,10 +10,7 @@ ___________
 ```plain
 $ git clone https://github.com/Kotauror/Tic_Tac_Toe_8th_Light
 ```
-> If you don't have a bundler - tool to track and install gems - run
-```plain
-$ gem install bundler
-```
+> If you don't have a bundler - tool to track and install gems - run $ gem install bundler
 
 ```plain
 $ bundle
