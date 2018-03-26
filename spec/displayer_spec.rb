@@ -26,9 +26,17 @@ describe Displayer do
 
   context 'Setting mode, getting names' do
     describe '#set_player_mode' do
-      it 'returns the chosen mode in case of valid input' do
+      it 'returns the chosen mode in case of valid input - 1' do
         allow(displayer).to receive(:gets).and_return("1\n")
         expect(displayer.set_player_mode).to eq("1")
+      end
+      it 'returns the chosen mode in case of valid input - 2' do
+        allow(displayer).to receive(:gets).and_return("2\n")
+        expect(displayer.set_player_mode).to eq("2")
+      end
+      it 'returns the chosen mode in case of valid input - 3' do
+        allow(displayer).to receive(:gets).and_return("3\n")
+        expect(displayer.set_player_mode).to eq("3")
       end
       it 'in case of invalid input - asks again' do
         allow(displayer).to receive(:gets).and_return("5\n", "1\n")
@@ -128,11 +136,18 @@ describe Displayer do
         allow(displayer).to receive(:gets).and_return("1")
         expect(displayer.get_order_information("Justyna", "Kota")).to eq("1")
       end
-      it 'in case of invalid input - asks again' do
+      it 'in case of invalid input - asks again - player1' do
         allow(displayer).to receive(:gets).and_return("3", "1")
         expect{displayer.get_order_information("Justyna", "Kota")}.to output(
           "If Justyna shall start enter 1, if Kota shall start enter 2\n" +
           "\e[0;31;49mPlease enter 1 or 2\e[0m\nJustyna is starting\n"
+        ).to_stdout
+      end
+      it 'in case of invalid input - asks again - player2' do
+        allow(displayer).to receive(:gets).and_return("3", "2")
+        expect{displayer.get_order_information("Justyna", "Kota")}.to output(
+          "If Justyna shall start enter 1, if Kota shall start enter 2\n" +
+          "\e[0;31;49mPlease enter 1 or 2\e[0m\nKota is starting\n"
         ).to_stdout
       end
     end
