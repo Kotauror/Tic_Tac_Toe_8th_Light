@@ -24,10 +24,12 @@ describe Computer do
   end
   describe 'pick_5_when_possible' do
     it 'picks 5 when available' do
-      expect(computer.pick_5_when_possible(board)).to eq(5)
+      allow(board).to receive(:available_numbers).and_return(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
+      expect(computer.pick_5_when_possible(board)).to eq("5")
     end
     it 'doesn\'t pick 5 when not available' do
-      expect(computer.pick_5_when_possible(board_without_5)).not_to eq(5)
+      allow(board_without_5).to receive(:available_numbers).and_return(["1", "2", "3", "4", "J", "6", "7", "8", "9"])
+      expect(computer.pick_5_when_possible(board_without_5)).not_to eq("5")
     end
   end
   describe 'pick_winning_position' do
@@ -36,7 +38,7 @@ describe Computer do
       allow(board_winning_for_active).to receive(:put_sign_on_board).with("C", "3")
       allow(board_winning_for_active).to receive(:is_game_won?).and_return true
       allow(board_winning_for_active).to receive(:put_sign_on_board).with("3", "3")
-      expect(computer.pick_winning_position(board_winning_for_active)).to eq(3)
+      expect(computer.pick_winning_position(board_winning_for_active)).to eq("3")
     end
   end
   describe 'block_opponent' do
@@ -45,7 +47,7 @@ describe Computer do
       allow(board_winning_for_passive).to receive(:put_sign_on_board).with("K", "3")
       allow(board_winning_for_passive).to receive(:is_game_won?).and_return true
       allow(board_winning_for_passive).to receive(:put_sign_on_board).with("3", "3")
-      expect(computer.block_opponent(board_winning_for_passive, "K")).to eq(3)
+      expect(computer.block_opponent(board_winning_for_passive, "K")).to eq("3")
     end
   end
 

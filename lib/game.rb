@@ -47,7 +47,7 @@ class Game
         picked_number = @active_player.select_number(@board, @opponent.sign)
       end
       displayer.inform_of_move(@active_player, picked_number)
-      @board.put_sign_on_board(@active_player.sign, picked_number.to_i)
+      @board.put_sign_on_board(@active_player.sign, picked_number)
       switch_active_player
     end
     @displayer.show_board(@board.values, @player1.sign, @player2.sign)
