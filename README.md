@@ -1,6 +1,6 @@
 # Tic-Tac-Toe #
 
-A Tic-Tac-Toe game created as a tech-test for 8th Light.
+A Tic-Tac-Toe game written in ruby as a tech-test for 8th Light.
 ___________
 
 ## How to:
@@ -39,11 +39,20 @@ $ open index.html
 ## Features:
 
 1. Three modes of game: Human vs Human, Human vs Computer, Computer vs Computer;
+
 2. Human player can pick their name and sign(marker);
+
 3. In all modes users are asked to choose who goes first;
+
 4. Command line interface;
+
 5. Surprise Goblet when there's a winner;
-6. Colored board and error messages to make the gameflow easier to follow.
+
+6. Colored board and error messages to make the gameflow easier to follow;
+
+7. Computer plays on a medium level - each time it is to make a move, it:
+  * randomise whether to make a random move or a best possible move;
+  * makes a move selected in the step above.
 
 ## Approach
 
@@ -62,12 +71,17 @@ $ open index.html
 
 **[Naming]** I've used clear naming. I've also changed the board to display numbers from 1 to 9 instead from 0 to 8 - non-programmers, especially kids, usually count from 1 :)
 
+**[Fun]** The game is meant to be for kids. Therefore I've added some colors and a picture to make it more engaging.
+
 ## Design of code:
 
-
-
-
-copyright
+* `Setup` - responsible for running the setup part of game - when a new instance of `Game` is created, players and their signs are picked, order is set.
+* `Displayer` - responsible for getting the input from the user (+checking if the input is correct) and showing the user relevant information like current state of board and errors.
+* `Game` - knows of players and board; engine which puts elements together to run the game.
+* `Board` - puts signs on board, knows if a field can be picked, knows which slots are available, knows if game is over/there is a tie.
+* `Player` - has a name and sign.
+* `Human` - simply inherits from Player.
+* `Computer` - inherits from Player + picks a move.
 
 ## User Story provided by 8th Light:
 
