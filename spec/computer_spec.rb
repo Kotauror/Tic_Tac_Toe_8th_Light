@@ -66,6 +66,25 @@ describe Computer do
         allow(computer).to receive(:pick_5_when_possible).and_return "5"
         expect(computer.elaborate_move(board, "K")).to eq "5"
       end
+      it 'returns winning position when 5 is not available and winning position is' do
+        allow(computer).to receive(:pick_5_when_possible).and_return nil
+        allow(computer).to receive(:pick_winning_position).and_return "4"
+        expect(computer.elaborate_move(board, "K")).to eq "4"
+      end
+      it 'returns block-opponnet position when 5 and winning position are not available and block-opponent position is' do
+        allow(computer).to receive(:pick_5_when_possible).and_return nil
+        allow(computer).to receive(:pick_winning_position).and_return nil
+        allow(computer).to receive(:block_opponent).and_return "4"
+        expect(computer.elaborate_move(board, "K")).to eq "4"
+      end
+      it 'returns random position when 5, winning position and block opponent position are not available' do
+        allow(computer).to receive(:pick_5_when_possible).and_return nil
+        allow(computer).to receive(:pick_winning_position).and_return nil
+        allow(computer).to receive(:block_opponent).and_return nil
+        allow(board).to receive(:available_numbers).and_return(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
+        srand(50)
+        expect(computer.elaborate_move(board, "K")).to eq "1"
+      end
     end
   end
 end
