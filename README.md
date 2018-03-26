@@ -58,7 +58,7 @@ $ open index.html
 
 **[Planning]** Before I've started to code I've devoted a day to think about the design of code (discussed in the next paragraph).
 
-**[Dealing with the codebase]** I've tried to use TDD to clean-up the provided codebase, starting with extracting the initial part of game (setup of mode, names, signs, order of players) to a different class, later called `Displayer`. The reason I wanted to work on the provided codebase instead of creating a whole new file was because I've learned at my previous job that clients usuallly want to see what was changed in their file. This idea was too hard to implement though. In order to TDD the code I would have to delete the codebase anyway, so I've decided to stop trying to tidy-up the messy code and build the Game from scratch. I've kept some parts of the initial Game in a tested and refactored form.
+**[Dealing with the codebase]** I've tried to use TDD to clean-up the provided codebase, starting with extracting the initial part of game (setup of mode, names, signs, order of players) to a different class, later called `Setup` and `Displayer`. The reason I wanted to work on the provided codebase instead of creating a whole new file was because I've learned at my previous job that clients usuallly want to see what was changed in their file. This idea was too hard to implement though. In order to TDD the code I would have to delete the codebase anyway, so I've decided to stop trying to tidy-up the messy code and build the Game from scratch. I've kept some parts of the initial Game in a tested and refactored form.
 
 **[TDD]** In the process of writing the code I was trying to stick to TDD as much as possible. In some cases I've spiked the code first to get a clearer vision of what I want to achieve in a particular method and then deleted it and TDD-ed. At the end of the day, I've reached a 96.68% coverage. The missing lines are:
   * methods which use only build-in ruby methods like .sample
@@ -67,7 +67,7 @@ $ open index.html
     * This method uses many methods from many classes to run a round. Testing it would mean that I would have to mock numerous functions from other classes what wouldn't serve the purpose of checking if the game calls all the methods and the methods return what I want.
     * Instead of mocking all of these methods, I've considered writing one huge integration test where I would require all of the files and without any mocks just play a complete game. I've decided that this is not necessary as all the methods used in `game_play` are tested anyway and having this big test could be incomprehensible to others. Also each time I would change anything in my code, it would probably break this huge test.
 
-**[OOD]** From the beginning I've focused very hard on Object Oriented Design, especially separation of concerns. All my classes have dedicated tasks and therefore are very easy to test, understand, and extend. I the most proud of my `Displayer` class that is the only class responsible for dealing with player's input. As the UI is separated, the game is open for adding a more advanced interface as intended by the devs. I believe my code is open for extensions thanks to the separation of concerns described above. I've also used dependency injection in case of `Board` (integral part of a particular game) and Liskov substitution principle in case of Human and Computer players.  
+**[OOD]** From the beginning I've focused very hard on Object Oriented Design, especially separation of concerns. All my classes have dedicated tasks and therefore are very easy to test, understand, and extend. I the most proud of my `Displayer` class that is the only class responsible for dealing with player's input. As the UI is separated, the game is open for adding a more advanced interface as intended by the devs. I believe my code is open for extensions thanks to the separation of concerns described above. I've also used dependency injection in case of `Board` (integral part of a particular game) and Liskov substitution principle in case of `Human` and `Computer` players.  
 
 **[Naming]** I've used clear naming. I've also changed the board to display numbers from 1 to 9 instead from 0 to 8 - non-programmers, especially kids, usually count from 1 :)
 
@@ -75,7 +75,7 @@ $ open index.html
 
 ## Design of code:
 
-* `Setup` - responsible for running the setup part of game - when a new instance of `Game` is created, players and their signs are picked, order is set.
+* `Setup` - responsible for running the initial part of game -  a new instance of `Game` is created, players and their signs are picked, order is set.
 * `Displayer` - responsible for getting the input from the user (+checking if the input is correct) and showing the user relevant information like current state of board and errors.
 * `Game` - knows of players and board; engine which puts elements together to run the game.
 * `Board` - puts signs on board, knows if a field can be picked, knows which slots are available, knows if game is over/there is a tie.
