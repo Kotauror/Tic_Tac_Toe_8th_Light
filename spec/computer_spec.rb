@@ -10,7 +10,7 @@ describe Computer do
 
   context 'During the game' do
     describe 'select_number' do
-      it 'selects the elaborate mode of picking move' do
+      it 'selects elaborate or random mode of picking move' do
         expect(computer).to receive(:elaborate_move).with(board, "K")
         srand(5)
         computer.select_number(board, "K")
@@ -54,11 +54,17 @@ describe Computer do
         allow(board_winning_for_passive).to receive(:put_sign_on_board).with("3", "3")
         expect(computer.block_opponent(board_winning_for_passive, "K")).to eq("3")
       end
-      it 'doesn\'t block an if not possible' do
+      it 'doesn\'t block an opponent if not possible' do
         allow(board).to receive(:available_numbers).and_return(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
         allow(board).to receive(:put_sign_on_board).with("K", "3")
         allow(board).to receive(:is_game_won?).and_return false
         allow(board).to receive(:put_sign_on_board).with("3", "3")
+      end
+    end
+    describe 'elaborate_move' do
+      it 'returns 5 if pick_5_when_possible returned 5' do
+        allow(computer).to receive(:pick_5_when_possible).and_return "5"
+        expect(computer.elaborate_move(board, "K")).to eq "5"
       end
     end
   end
