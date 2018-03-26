@@ -18,7 +18,7 @@ class Computer < Player
   end
 
   def elaborate_move(board, opponent_sign)
-    position = pick_4_when_possible(board)
+    position = pick_5_when_possible(board)
     if position == nil then
       position = pick_winning_position(board)
       if position == nil then
@@ -31,8 +31,8 @@ class Computer < Player
     return position
   end
 
-  def pick_4_when_possible(board)
-    return 4 if board.values.include?("4")
+  def pick_5_when_possible(board)
+    return 5 if board.values.include?("5")
   end
 
   def pick_winning_position(board)
