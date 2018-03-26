@@ -10,12 +10,12 @@ describe Computer do
 
   context 'During the game' do
     describe 'select_number' do
-      it 'selects the elaborate mode' do
+      it 'selects the elaborate mode of picking move' do
         expect(computer).to receive(:elaborate_move).with(board, "K")
         srand(5)
         computer.select_number(board, "K")
       end
-      it 'selects the random mode' do
+      it 'selects the random mode of picking move' do
         expect(computer).to receive(:random_move).with board
         srand(50)
         computer.select_number(board, "K")
@@ -23,11 +23,11 @@ describe Computer do
     end
   end
   describe 'pick_5_when_possible' do
-    it 'picks 5 when available' do
+    it 'picks 5 on board when 5 is available' do
       allow(board).to receive(:available_numbers).and_return(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
       expect(computer.pick_5_when_possible(board)).to eq("5")
     end
-    it 'doesn\'t pick 5 when not available' do
+    it 'doesn\'t pick 5 when 5 is not available' do
       allow(board_without_5).to receive(:available_numbers).and_return(["1", "2", "3", "4", "J", "6", "7", "8", "9"])
       expect(computer.pick_5_when_possible(board_without_5)).not_to eq("5")
     end

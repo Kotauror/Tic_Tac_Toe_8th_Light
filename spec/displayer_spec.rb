@@ -170,7 +170,7 @@ describe Displayer do
         allow(board).to receive(:is_valid?).and_return(true)
         expect(displayer.ask_for_number(active_player, board)).to eq("1")
       end
-      it 'In case of invalid input - asks again' do
+      it 'in case of invalid input - asks again' do
         allow(displayer).to receive(:gets).and_return("1\n")
         allow(board).to receive(:is_valid?).and_return(false, true)
         expect{displayer.ask_for_number(active_player, board)}.to output(
@@ -200,7 +200,7 @@ describe Displayer do
 
   context 'Game is over' do
     describe '#final_score_annoncement' do
-      it 'announecs the winner' do
+      it 'announecs the winner if there is one' do
         allow(board).to receive(:is_game_won?).and_return true
         expect{displayer.final_score_annoncement(board, opponent)}.to output(
           "\e[0;33;49m---------------\nkota won\e[0m\n"

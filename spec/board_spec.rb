@@ -9,7 +9,7 @@ describe Board do
 
   context 'Initialization' do
     describe '#initialize' do
-      it 'has an array of values from 1 to 9' do
+      it 'has an array of values from 1 to 9 - all slots available to pick' do
         expect(board.values).to eq(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
       end
     end
@@ -114,7 +114,7 @@ describe Board do
     end
   end
   describe '#available_numbers' do
-    it 'returns an array of available numbers' do
+    it 'returns an array of available numbers to be picked by player' do
       board.put_sign_on_board(active_player.sign, "1")
       expect(board.available_numbers).to eq ["2", "3", "4", "5", "6", "7", "8", "9"]
     end
