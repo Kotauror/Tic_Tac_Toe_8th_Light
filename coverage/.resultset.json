@@ -839,6 +839,7 @@
       "/Users/kotpsot/Desktop/Tic_Tac_Toe_8th_Light/lib/game.rb": [
         1,
         1,
+        1,
         null,
         1,
         null,
@@ -906,6 +907,12 @@
         null,
         null
       ],
+      "/Users/kotpsot/Desktop/Tic_Tac_Toe_8th_Light/lib/Human.rb": [
+        1,
+        null,
+        1,
+        null
+      ],
       "/Users/kotpsot/Desktop/Tic_Tac_Toe_8th_Light/spec/player_spec.rb": [
         1,
         null,
@@ -927,6 +934,6 @@
         null
       ]
     },
-    "timestamp": 1522067760
+    "timestamp": 1522069337
   }
 }

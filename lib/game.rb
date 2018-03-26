@@ -1,5 +1,6 @@
 require_relative 'board'
 require_relative 'displayer'
+require_relative 'Human'
 
 class Game
 
