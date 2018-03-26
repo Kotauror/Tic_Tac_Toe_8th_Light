@@ -22,14 +22,14 @@ $ cd lib
 $ ruby setup.rb
 ```
 
-* Run the tests *(71 ex, all passing)*:
+* Run the tests *(74 ex, all passing)*:
 
 ```plain  
 $ cd Tic_Tac_Toe_8th_Light
 $ rspec -fd
 ```
 
-* See test coverage *(total cov. 96.68%)*:
+* See test coverage *(total cov. 97.45%)*:
 
 ```plain
 $ cd Tic_Tac_Toe_8th_Light/coverage
@@ -58,16 +58,19 @@ $ open index.html
 
 **[Planning]** Before I've started to code I've devoted a day to think about the design of code (discussed in the next paragraph).
 
-**[Dealing with the codebase]** I've tried to use TDD to clean-up the provided codebase, starting with extracting the initial part of game (setup of mode, names, signs, order of players) to a different class, later called `Setup` and `Displayer`. The reason I wanted to work on the provided codebase instead of creating a whole new file was because I've learned at my previous job that clients usuallly want to see what was changed in their file. This idea was too hard to implement though. In order to TDD the code I would have to delete the codebase anyway, so I've decided to stop trying to tidy-up the messy code and build the Game from scratch. I've kept some parts of the initial Game in a tested and refactored form.
+**[Dealing with the codebase]** I've tried to use TDD to clean-up the provided codebase, starting with extracting the initial part of game (setup of mode, names, signs, order of players) to a different class, later called `Setup` and `Displayer`. The reason I wanted to work on the provided codebase instead of creating a whole new file was because I've learned at my previous job that clients usuallly want to see what was changed in their file. This idea was too hard to implement though. In order to TDD the code I would have to delete the codebase anyway, so I've decided to stop trying to tidy-up the messy code and build the Game from scratch. I've kept some parts of the initial Game in a tested and refactored form (especially the unbeatable computer logic helped me a lot!)
 
-**[TDD]** In the process of writing the code I was trying to stick to TDD as much as possible. In some cases I've spiked the code first to get a clearer vision of what I want to achieve in a particular method and then deleted it and TDD-ed. At the end of the day, I've reached a 96.68% coverage. The missing lines are:
-  * methods which use only build-in ruby methods like .sample
+**[TDD]** In the process of writing the code I was trying to stick to TDD as much as possible. In some cases I've spiked the code first to get a clearer vision of what I want to achieve in a particular method and then deleted it and TDD-ed. At the end of the day, I've reached a 97.45% coverage. The missing lines are:
+  * methods which use only build-in ruby methods like `.sample`;
   * `game_play` method in the `Game` class, responsible for running one round in a particular sequence. The reasons for not testing this one are:
     * I've tested all methods used in `game_play` separately;
-    * This method uses many methods from many classes to run a round. Testing it would mean that I would have to mock numerous functions from other classes what wouldn't serve the purpose of checking if the game calls all the methods and the methods return what I want.
-    * Instead of mocking all of these methods, I've considered writing one huge integration test where I would require all of the files and without any mocks just play a complete game. I've decided that this is not necessary as all the methods used in `game_play` are tested anyway and having this big test could be incomprehensible to others. Also each time I would change anything in my code, it would probably break this huge test.
+    * This method uses many methods from many classes to run a round. Testing it would mean that I would have to mock numerous functions from other classes what - I believe - wouldn't serve the purpose of checking if the game calls all the methods and the methods return what I want.
+    * Instead of mocking all of these methods, I thought that a better idea would be to write an integration test where I would require all of the files and without any mocks play a complete game. I've decided not to do it because:
+      * all the methods used in `game_play` were tested;
+      * each time I would change anything in my code, it would probably break this huge test;
+      * lastly and the most importantly - I've never written an integration test - I would love to learn about them before I approach this problem. If I were to write this test, it would probably (considering the fact that I'm still a full time Makers Academy student that can work on this challange only on evenings and weekend) vastly postpone delivery of this code.
 
-**[OOD]** From the beginning I've focused very hard on Object Oriented Design, especially separation of concerns. All my classes have dedicated tasks and therefore are very easy to test, understand, and extend. I the most proud of my `Displayer` class that is the only class responsible for dealing with player's input. As the UI is separated, the game is open for adding a more advanced interface as intended by the devs. I believe my code is open for extensions thanks to the separation of concerns described above. I've also used dependency injection in case of `Board` (integral part of a particular game) and Liskov substitution principle in case of `Human` and `Computer` players.  
+**[OOD]** From the beginning I've focused very hard on Object Oriented Design, especially separation of concerns. All my classes have dedicated tasks and therefore are very easy to test, understand, and extend. I the most proud of my `Displayer` class that is the only class responsible for dealing with player's input. However, I believe that the `Displayer` can be further separated into smaller classes - one dealing with checking if the input is valid and one responsible for coloring the output. As the UI is pretty well separated, the game is open for adding a more advanced interface as intended by the devs. I've  used dependency injection in case of `Board` (integral part of a particular game) and Liskov substitution principle in case of `Human` and `Computer` players.  
 
 **[Naming]** I've used clear naming. I've also changed the board to display numbers from 1 to 9 instead from 0 to 8 - non-programmers, especially kids, usually count from 1 :)
 
@@ -82,6 +85,17 @@ $ open index.html
 * `Player` - has a name and sign.
 * `Human` - simply inherits from Player.
 * `Computer` - inherits from Player + picks a move.
+
+## Most important things I've learned:
+
+* Improved my testing skills;
+* Learned to separate Input/Output logic to a separate class;
+* Learned to work on a task which required from me to cover many unhappy paths.
+
+## Things that I think should be improved / what I want to learn:
+
+* I would love to learn about integration test, or more generally - what is the best way to test a program like this (small methods put together in one engine);
+* As a beginner I don't always feel when is the best moment to create a new class. For example my Displayer also validates an input - on the one hand it seems to be ok as validation seems to be an integral part of input, but on the other is the Displayer the right class to do it?
 
 ## User Story provided by 8th Light:
 
