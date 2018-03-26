@@ -41,7 +41,7 @@ class Displayer
     puts "First player"
     user_one_data = ask_for_name_and_sign
     puts "Second player"
-    user_two_data = ask_for_name_and_sign_seond_player(user_one_data)
+    user_two_data = ask_for_name_and_sign_second_player(user_one_data)
     return user_one_data + user_two_data
   end
 
@@ -78,7 +78,7 @@ class Displayer
     return [name, sign]
   end
 
-  def ask_for_name_and_sign_seond_player(user_one_data)
+  def ask_for_name_and_sign_second_player(user_one_data)
     puts "Enter name"
     name = gets.chomp
     puts "#{name}, enter one letter sign to identify you on the board eg. X or O"
