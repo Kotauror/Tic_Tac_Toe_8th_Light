@@ -41,11 +41,7 @@ class Game
   def game_play
     while !@board.is_game_won? && !@board.is_tie?  do
       @displayer.show_board(@board.values, @player1.sign, @player2.sign)
-      if @active_player.is_a? Human
-        picked_number = @displayer.ask_for_number(@active_player, @board)
-      else
-        picked_number = @active_player.select_number(@board, @opponent.sign)
-      end
+      picked_number = get_number
       displayer.inform_of_move(@active_player, picked_number)
       @board.put_sign_on_board(@active_player.sign, picked_number)
       switch_active_player
@@ -59,6 +55,14 @@ class Game
     current_opponent = @opponent
     @opponent = current_active
     @active_player = current_opponent
+  end
+
+  def get_number
+    if @active_player.is_a? Human
+      return @displayer.ask_for_number(@active_player, @board)
+    else
+      return @active_player.select_number(@board, @opponent.sign)
+    end
   end
 
 end
