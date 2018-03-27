@@ -118,7 +118,7 @@ class Displayer
 
   def set_up_ready
     puts "-------- Setup is ready! --------".light_blue
-    puts "You'r game will start in".light_blue
+    puts "Your game will start in".light_blue
     sleep(1)
     puts "5".light_blue
     sleep(1)

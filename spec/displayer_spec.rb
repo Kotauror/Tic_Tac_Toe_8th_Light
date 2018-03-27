@@ -159,7 +159,7 @@ describe Displayer do
         allow(displayer).to receive(:sleep)
         expect{displayer.set_up_ready}.to output(
           "\e[0;94;49m-------- Setup is ready! --------\e[0m\n" +
-          "\e[0;94;49mYou'r game will start in\e[0m\n\e[0;94;49m5\e[0m\n" +
+          "\e[0;94;49mYour game will start in\e[0m\n\e[0;94;49m5\e[0m\n" +
           "\e[0;94;49m4\e[0m\n\e[0;94;49m3\e[0m\n\e[0;94;49m2\e[0m\n\e[0;94;49m1\e[0m\n"
         ).to_stdout
       end
