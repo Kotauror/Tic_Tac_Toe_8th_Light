@@ -55,7 +55,7 @@ $ open index.html
 
 **[Planning]** Before I've started to code I've devoted a significant amount of time to think about the design of code (discussed in the next paragraph).
 
-**[Dealing with the codebase]** I've tried to use TDD to clean-up the provided codebase, starting with extracting the initial part of game (setup of mode, names, signs, order of players) to a different class, later called `Setup` and `Displayer`. The reason I wanted to work on the provided codebase instead of creating a whole new file was because I've learned at my previous job that clients usually want to see how their file was modified. This idea was too hard to implement though. In order to TDD the code I would have to delete the codebase anyway, so I've decided to stop trying to tidy-up the messy code and build the Game from scratch. I've kept some parts of the initial Game in a tested and refactored form (especially the unbeatable computer logic helped me a lot!)
+**[Dealing with the codebase]** I've tried to use TDD to clean-up the provided codebase, starting with extracting the initial part of game (setup of mode, names, signs, order of players) to a different class, later called `Setup` and `Displayer`. The reason I wanted to work on the provided codebase instead of creating a whole new file was because I've learned that clients usually want to see how their file was modified. This idea was too hard to implement though. In order to TDD the code I would have to delete the codebase anyway, so I've decided to stop trying to tidy-up the messy code and build the Game from scratch. I've kept some parts of the initial Game in a tested and refactored form (especially the unbeatable computer logic helped me a lot!)
 
 **[TDD]** In the process of writing the code I was trying to stick to TDD as much as possible. In some cases I spiked the code first to get a clearer vision of what I want to achieve in a particular method and then deleted it and TDD-ed. At the end of the day, I've reached a 97.45% coverage. The missing lines are:
   * methods which use only build-in ruby methods like `.sample`;
@@ -83,6 +83,41 @@ $ open index.html
 * `Human` - simply inherits from Player.
 * `Computer` - inherits from Player + picks a move.
 
+## Graph:
+
+```plain
+                    +-----------------+
+                    |     BOARD       |
+                    |                 |
+                    +-------+---------+
+                            ^
+                            |
+                            +
+                   +-----------------+             +---------------+
++-------+          |                 |             |               |
+|       |          |     GAME        |  +------>   |  PLAYER       |
+| SETUP | +----->  |                 |             |  SUPERCLASS   |
+|       |          |                 |             |               |
++-------+          +-------+---------+             +---------------+
+                          |
+                          |                         +             +
+                          v                         |             |
+                  +------+---------+                |             |
+                  |                |                v             v
+                  |    DISPLAYER   |           +------+---+       +-+----------+
+                  |                |           | HUMAN    |       | COMPUTER   |
+                  +----------------+           |          |       |            |
+                                               +----------+       +------------+
+                    +         ^
+                    |         |
+                    |         |
+                    v         +
+                +----------------+
+                |                |
+                |   USER OF GAME |
+                |                |
+                +----------------+
+```
 ## Most important things I've learned:
 
 * Improved my testing skills;
