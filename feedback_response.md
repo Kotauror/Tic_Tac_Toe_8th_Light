@@ -1,6 +1,6 @@
 How I approached the feedback requests:
 
-1. Fixing the error: `Traceback (most recent call last): ruby: No such file or directory -- catpix.rb (LoadError)`.
+##### Fixing the error: `Traceback (most recent call last): ruby: No such file or directory -- catpix.rb (LoadError)`.
   * Found the failing test;
   * Found the line of code which caused the error:
 
@@ -14,4 +14,9 @@ How I approached the feedback requests:
   ```ruby
     allow(displayer).to receive(:system)
   ```
-2. Clear the terminal window after each round
+
+##### Cleaning the terminal window after each round
+  * I was already cleaning the terminal after the initial setup using the `system("clear")` method.
+  * Because of this fact, to keep the code dry, I've created a `clear_terminal` method that I'm now using to both:
+    - clean the terminal after the initial setup;
+    - clean the terminal after each move. 
