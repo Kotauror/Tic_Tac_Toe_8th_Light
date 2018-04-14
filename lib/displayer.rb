@@ -31,10 +31,6 @@ class Displayer
     end
   end
 
-  def clean_previous_board
-    system("clear")
-  end
-
   def single_mode_name_sign
     puts "You've picked the human vs computer mode"
     ask_for_name_and_sign
@@ -134,7 +130,7 @@ class Displayer
     sleep(1)
     puts "1".light_blue
     sleep(1)
-    system "clear"
+    clear_terminal
   end
 
   def show_board(board_values, sign_1, sign_2)
@@ -182,4 +178,8 @@ class Displayer
     end
   end
 
+  def clear_terminal
+    system("clear")
+  end
+  
 end

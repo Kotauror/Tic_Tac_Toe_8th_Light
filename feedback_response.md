@@ -14,3 +14,4 @@ How I approached the feedback requests:
   ```ruby
     allow(displayer).to receive(:system)
   ```
+2. Clear the terminal window after each round

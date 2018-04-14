@@ -211,8 +211,9 @@ describe Displayer do
         ).to_stdout
       end
     end
-    describe '#clean_previous_board' do
+    describe '#clear_terminal' do
       it "should receive system with clear" do
+        displayer.clear_terminal
         allow(displayer).to receive(:system).with("clear")
       end
     end

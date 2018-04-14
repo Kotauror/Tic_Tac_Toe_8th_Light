@@ -45,7 +45,7 @@ class Game
       displayer.inform_of_move(@active_player, picked_number)
       @board.put_sign_on_board(@active_player.sign, picked_number)
       switch_active_player
-      @displayer.clean_previous_board
+      @displayer.clear_terminal
     end
     @displayer.show_board(@board.values, @player1.sign, @player2.sign)
     displayer.final_score_annoncement(@board, @opponent)
