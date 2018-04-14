@@ -32,3 +32,29 @@ How I approached the feedback requests:
     - it picks a corner when possible;
     - it picks a random move.
   * Implementation of this feature was rather easy thanks to the design decision I've made in the initial version of the game.
+
+##### Stop mocking the class under the test
+  * Lastly I was requested to change the tests in which I've mocked methods of the class under test.
+  * Instead of mocking the instances of class under test (`Computer`), I've mocked an instance of `Board` class on which the computer makes its moves. Example:
+
+- Previous solution:
+
+```ruby
+it 'returns winning position when 5 is not available and winning position is' do
+    allow(computer).to receive(:pick_5_when_possible).and_return nil
+    ## improved part - mock of class under test
+    allow(computer).to receive(:pick_winning_position).and_return "4"
+    expect(computer.elaborate_move(board, "K")).to eq "4"
+```
+
+- New solution:
+
+```ruby
+  it 'returns winning position when 5 is not available and winning position is' do
+    allow(board_winning_for_active).to receive(:available_numbers).and_return ["3", "6", "7", "8", "9", "7", "8", "9"]
+    allow(board_winning_for_active).to receive(:put_sign_on_board).with("C", "3")
+    allow(board_winning_for_active).to receive(:is_game_won?).and_return true
+    allow(board_winning_for_active).to receive(:put_sign_on_board).with("3", "3")
+    expect(computer.elaborate_move(board_winning_for_active, "K")).to eq "3"
+  end
+```
