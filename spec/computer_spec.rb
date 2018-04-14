@@ -4,6 +4,7 @@ describe Computer do
 
   subject(:computer) { described_class.new("Computer 1", "C") }
   let(:board) {double('board', :values => ["1", "2", "3", "4", "5", "6", "7", "8", "9"])}
+  let(:board_no_corners) {double('board', :values => ["2", "4", "5", "6", "8"])}
   let(:board_without_5) {double('board', :values => ["1", "2", "3", "J", "J", "6", "7", "8", "9"])}
   let(:board_winning_for_active) {double('board', :values => ["C", "C", "3", "K", "5", "6", "7", "8", "9"])}
   let(:board_winning_for_passive) {double('board', :values => ["K", "K", "3", "J", "5", "6", "7", "8", "9"])}
@@ -48,19 +49,6 @@ describe Computer do
         allow(board).to receive(:put_sign_on_board).with("3", "3")
       end
     end
-    describe 'pick_corner' do
-      it 'picks a corner when possible' do
-        allow(board_winning_for_active).to receive(:available_numbers).and_return(["3", "4", "5", "6", "7", "8", "9"])
-        allow(board_winning_for_active).to receive(:include?).with("1").and_return(false)
-        allow(board_winning_for_active).to receive(:include?).with("3").and_return(true)
-        allow(board_winning_for_active).to receive(:put_sign_on_board).with("C", "3")
-        expect(computer.pick_corner(board_winning_for_active)).to eq("3")
-      end
-      # it 'doesn\'t pick a corner position if not possible' do
-      #   allow(board).to receive(:available_numbers).and_return(["2", "4", "6", "8"])
-      #   expect(computer.pick_corner(board_winning_for_active)).to eq(nil)
-      # end
-    end
     describe 'block_opponent' do
       it 'blocks opponent when possible' do
         allow(board_winning_for_passive).to receive(:available_numbers).and_return(["3", "4", "5", "6", "7", "8", "9"])
@@ -74,6 +62,19 @@ describe Computer do
         allow(board).to receive(:put_sign_on_board).with("K", "3")
         allow(board).to receive(:is_game_won?).and_return false
         allow(board).to receive(:put_sign_on_board).with("3", "3")
+      end
+    end
+    describe 'pick_corner' do
+      it 'picks a corner when possible' do
+        allow(board_winning_for_active).to receive(:available_numbers).and_return(["3", "4", "5", "6", "7", "8", "9"])
+        allow(board_winning_for_active).to receive(:include?).with("1").and_return(false)
+        allow(board_winning_for_active).to receive(:include?).with("3").and_return(true)
+        allow(board_winning_for_active).to receive(:put_sign_on_board).with("C", "3")
+        expect(computer.pick_corner(board_winning_for_active)).to eq("3")
+      end
+      it 'doesn\'t pick a corner position if not possible' do
+        allow(board_no_corners).to receive(:available_numbers).and_return(["2", "4", "6", "8"])
+        expect(computer.pick_corner(board_no_corners)).to eq(nil)
       end
     end
     describe 'elaborate_move' do
@@ -91,6 +92,12 @@ describe Computer do
         allow(computer).to receive(:pick_winning_position).and_return nil
         allow(computer).to receive(:block_opponent).and_return "4"
         expect(computer.elaborate_move(board, "K")).to eq "4"
+      end
+      it 'returns a corner position when 5, winning position and block-opponent are not available, but the corner is' do
+        allow(computer).to receive(:pick_5_when_possible).and_return nil
+        allow(computer).to receive(:pick_winning_position).and_return nil
+        allow(computer).to receive(:block_opponent).and_return nil
+        expect(computer.elaborate_move(board, "K")).to eq "1"
       end
       it 'returns random position when 5, winning position and block opponent position are not available' do
         allow(computer).to receive(:pick_5_when_possible).and_return nil
