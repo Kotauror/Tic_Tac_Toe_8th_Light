@@ -20,3 +20,15 @@ How I approached the feedback requests:
   * Because of this fact, following the DRY principle, I've created a `clear_terminal` method that I'm now using to both:
     - clean the terminal after the initial setup;
     - clean the terminal after each move.
+
+##### Making the computer unbeatable
+  * In the initial task I was asked to make to computer play on a **medium** level, so that people should be able to beat it in certain situations.
+  * My previous computer either played a random move or an elaborate move depending on a randomiser /see the `README` file for further explanations/.
+  * Right now, according to the feedback request, the computer is **unbeatable**.
+  * The computer plays according to the following logic:
+    - it picks the middle spot if possible;
+    - it picks a winning position if possible;
+    - it blocks an opponent if possible;
+    - it picks a corner when possible;
+    - it picks a random move.
+  * Implementation of this feature was rather easy thanks to the design decision I've made in the initial version of the game.
