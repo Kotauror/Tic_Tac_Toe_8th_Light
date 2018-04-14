@@ -48,6 +48,19 @@ describe Computer do
         allow(board).to receive(:put_sign_on_board).with("3", "3")
       end
     end
+    describe 'pick_corner' do
+      it 'picks a corner when possible' do
+        allow(board_winning_for_active).to receive(:available_numbers).and_return(["3", "4", "5", "6", "7", "8", "9"])
+        allow(board_winning_for_active).to receive(:include?).with("1").and_return(false)
+        allow(board_winning_for_active).to receive(:include?).with("3").and_return(true)
+        allow(board_winning_for_active).to receive(:put_sign_on_board).with("C", "3")
+        expect(computer.pick_corner(board_winning_for_active)).to eq("3")
+      end
+      # it 'doesn\'t pick a corner position if not possible' do
+      #   allow(board).to receive(:available_numbers).and_return(["2", "4", "6", "8"])
+      #   expect(computer.pick_corner(board_winning_for_active)).to eq(nil)
+      # end
+    end
     describe 'block_opponent' do
       it 'blocks opponent when possible' do
         allow(board_winning_for_passive).to receive(:available_numbers).and_return(["3", "4", "5", "6", "7", "8", "9"])
@@ -83,6 +96,7 @@ describe Computer do
         allow(computer).to receive(:pick_5_when_possible).and_return nil
         allow(computer).to receive(:pick_winning_position).and_return nil
         allow(computer).to receive(:block_opponent).and_return nil
+        allow(computer).to receive(:pick_corner).and_return nil
         allow(board).to receive(:available_numbers).and_return(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
         srand(50)
         expect(computer.elaborate_move(board, "K")).to eq "1"

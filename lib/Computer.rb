@@ -14,13 +14,17 @@ class Computer < Player
   end
 
   def elaborate_move(board, opponent_sign)
+    sleep(1)
     position = pick_5_when_possible(board)
     if position == nil then
       position = pick_winning_position(board)
       if position == nil then
         position = block_opponent(board, opponent_sign)
         if position == nil then
-          position = random_move(board)
+          position = pick_corner(board)
+          if position == nil then
+            position = random_move(board)
+          end
         end
       end
     end
@@ -57,6 +61,21 @@ class Computer < Player
       end
     }
     return nil
+  end
+
+  def pick_corner(board)
+    values = board.values
+    if values.include?("1") then
+      return "1"
+    elsif values.include?("3") then
+      return "3"
+    elsif values.include?("7") then
+      return "7"
+    elsif values.include?("9") then
+      return "9"
+    else
+      return nil
+    end
   end
 
 end
