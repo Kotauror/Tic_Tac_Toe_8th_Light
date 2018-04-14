@@ -8,22 +8,9 @@ describe Computer do
   let(:board_without_5) {double('board', :values => ["1", "2", "3", "J", "J", "6", "7", "8", "9"])}
   let(:board_winning_for_active) {double('board', :values => ["C", "C", "3", "K", "5", "6", "7", "8", "9"])}
   let(:board_winning_for_passive) {double('board', :values => ["K", "K", "3", "J", "5", "6", "7", "8", "9"])}
+  let(:board_only_weak_positions) {double('board', :values => ["2", "4", "6", "8"])}
 
   context 'During the game' do
-    describe 'select_number' do
-      it 'selects elaborate or random mode of picking move' do
-        allow(computer).to receive(:sleep)
-        expect(computer).to receive(:elaborate_move).with(board, "K")
-        srand(5)
-        computer.select_number(board, "K")
-      end
-      it 'selects the random mode of picking move' do
-        allow(computer).to receive(:sleep)
-        expect(computer).to receive(:random_move).with board
-        srand(50)
-        computer.select_number(board, "K")
-      end
-    end
     describe 'pick_5_when_possible' do
       it 'picks 5 on board when 5 is available' do
         allow(board).to receive(:available_numbers).and_return(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
@@ -75,6 +62,14 @@ describe Computer do
       it 'doesn\'t pick a corner position if not possible' do
         allow(board_no_corners).to receive(:available_numbers).and_return(["2", "4", "6", "8"])
         expect(computer.pick_corner(board_no_corners)).to eq(nil)
+      end
+    end
+    describe 'random_move' do
+      it 'selects a random move' do
+        srand(50)
+        allow(computer).to receive(:sleep)
+        allow(board_only_weak_positions).to receive(:available_numbers).and_return(["2", "4", "6", "8",])
+        expect(computer.random_move(board_only_weak_positions)).to eq("2")
       end
     end
     describe 'elaborate_move' do

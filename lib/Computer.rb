@@ -4,15 +4,6 @@ require_relative 'board'
 
 class Computer < Player
 
-  def select_number(board, opponent_sign)
-    sleep(1)
-    [1,0].sample == 1 ? random_move(board) : elaborate_move(board, opponent_sign)
-  end
-
-  def random_move(board)
-    board.available_numbers.sample
-  end
-
   def elaborate_move(board, opponent_sign)
     sleep(1)
     position = pick_5_when_possible(board)
@@ -76,6 +67,10 @@ class Computer < Player
     else
       return nil
     end
+  end
+
+  def random_move(board)
+    board.available_numbers.sample
   end
 
 end

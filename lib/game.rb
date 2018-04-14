@@ -62,7 +62,7 @@ class Game
     if @active_player.is_a? Human
       return @displayer.ask_for_number(@active_player, @board)
     else
-      return @active_player.select_number(@board, @opponent.sign)
+      return @active_player.elaborate_move(@board, @opponent.sign)
     end
   end
 

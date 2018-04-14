@@ -17,6 +17,6 @@ How I approached the feedback requests:
 
 ##### Cleaning the terminal window after each round
   * I was already cleaning the terminal after the initial setup using the `system("clear")` method.
-  * Because of this fact, to keep the code dry, I've created a `clear_terminal` method that I'm now using to both:
+  * Because of this fact, following the DRY principle, I've created a `clear_terminal` method that I'm now using to both:
     - clean the terminal after the initial setup;
-    - clean the terminal after each move. 
+    - clean the terminal after each move.
