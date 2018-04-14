@@ -1,7 +1,6 @@
 require_relative 'player'
 require_relative 'board'
 
-
 class Computer < Player
 
   def elaborate_move(board, opponent_sign)
@@ -55,18 +54,9 @@ class Computer < Player
   end
 
   def pick_corner(board)
-    values = board.values
-    if values.include?("1") then
-      return "1"
-    elsif values.include?("3") then
-      return "3"
-    elsif values.include?("7") then
-      return "7"
-    elsif values.include?("9") then
-      return "9"
-    else
-      return nil
-    end
+    board.values.find { |num|
+      num == "1" || num == "3" || num == "7" || num == "9"
+    }
   end
 
   def random_move(board)
