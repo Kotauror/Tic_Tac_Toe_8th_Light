@@ -211,7 +211,13 @@ describe Displayer do
         ).to_stdout
       end
     end
+    describe '#clean_previous_board' do
+      it "should receive system with clear" do
+        allow(displayer).to receive(:system).with("clear")
+      end
+    end
   end
+
 
   context 'Game is over' do
     describe '#final_score_annoncement' do

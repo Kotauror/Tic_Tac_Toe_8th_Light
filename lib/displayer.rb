@@ -31,6 +31,10 @@ class Displayer
     end
   end
 
+  def clean_previous_board
+    system("clear")
+  end
+
   def single_mode_name_sign
     puts "You've picked the human vs computer mode"
     ask_for_name_and_sign
