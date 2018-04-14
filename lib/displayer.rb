@@ -172,7 +172,7 @@ class Displayer
   def final_score_annoncement(board, opponent)
     if board.is_game_won? then
       puts "---------------\n#{opponent.name} won".yellow
-      system "ruby catpix.rb goblet.png"
+      system "ruby make_a_picture.rb goblet.png"
     else
       puts "----------------\nIt's a tie\n"
     end
@@ -181,5 +181,5 @@ class Displayer
   def clear_terminal
     system("clear")
   end
-  
+
 end
