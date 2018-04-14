@@ -216,12 +216,14 @@ describe Displayer do
   context 'Game is over' do
     describe '#final_score_annoncement' do
       it 'announecs the winner if there is one' do
+        allow(displayer).to receive(:system)
         allow(board).to receive(:is_game_won?).and_return true
         expect{displayer.final_score_annoncement(board, opponent)}.to output(
           "\e[0;33;49m---------------\nkota won\e[0m\n"
         ).to_stdout
       end
       it 'tells there was a tie' do
+        allow(displayer).to receive(:system)
         allow(board).to receive(:is_game_won?).and_return false
         expect{displayer.final_score_annoncement(board, opponent)}.to output(
           "----------------\nIt's a tie\n"
