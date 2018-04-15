@@ -1,6 +1,9 @@
 # Tic-Tac-Toe #
 
 A Tic-Tac-Toe game written in ruby as a tech-test for 8th Light.
+
+>The game was slightly changed during the feedback session /see the `Feedback_response` file for further explanations/.
+
 ___________
 
 ## How to:
@@ -26,7 +29,7 @@ $ cd Tic_Tac_Toe_8th_Light
 $ rspec -fd
 ```
 
-#### See test coverage *(97.45%)*:
+#### See test coverage *(97.75%)*:
 
 ```plain
 $ cd Tic_Tac_Toe_8th_Light/coverage

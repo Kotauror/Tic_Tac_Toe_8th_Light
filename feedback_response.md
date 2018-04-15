@@ -1,27 +1,8 @@
-How I approached the feedback requests:
+## Improvements requested in the feedback
 
-##### Fixing the error: `Traceback (most recent call last): ruby: No such file or directory -- catpix.rb (LoadError)`.
-  * Found the failing test;
-  * Found the line of code which caused the error:
+Below you can find a list of requests and a brief description of introduced changes.
 
-  ```ruby
-    system "ruby catpix.rb goblet.png"
-  ```
-
-  * The error was caused because of the fact that I was calling a `system` command in my ruby code, but didn't include this fact in the test. When the test hit the `system` line, it tried to load the file, but it didn't find it as it was located in a different file.
-  * I've solved this problem by stubbing the system command:
-
-  ```ruby
-    allow(displayer).to receive(:system)
-  ```
-
-##### Cleaning the terminal window after each round
-  * I was already cleaning the terminal after the initial setup using the `system("clear")` method.
-  * Because of this fact, following the DRY principle, I've created a `clear_terminal` method that I'm now using to both:
-    - clean the terminal after the initial setup;
-    - clean the terminal after each move.
-
-##### Making the computer unbeatable
+##### 1. Making the computer unbeatable
   * In the initial task I was asked to make to computer play on a **medium** level, so that people should be able to beat it in certain situations.
   * My previous computer either played a random move or an elaborate move depending on a randomiser /see the `README` file for further explanations/.
   * Right now, according to the feedback request, the computer is **unbeatable**.
@@ -33,7 +14,28 @@ How I approached the feedback requests:
     - it picks a random move.
   * Implementation of this feature was rather easy thanks to the design decision I've made in the initial version of the game.
 
-##### Stop mocking the class under the test
+
+##### 2. Fixing the error: `Traceback (most recent call last): ruby: No such file or directory -- catpix.rb (LoadError)`.
+  * Found the test which caused this error;
+
+  ```ruby
+    system "ruby catpix.rb goblet.png"
+  ```
+
+  * The error was caused because of the fact that I was calling a `system` command in my ruby code, but didn't include this fact in the test.
+  * I've solved this problem by stubbing the system command:
+
+  ```ruby
+    allow(displayer).to receive(:system)
+  ```
+
+##### 3. Cleaning the terminal window after each round
+  * I was already cleaning the terminal after the initial setup using the `system("clear")` method.
+  * Because of this fact, following the DRY principle, I've created a `clear_terminal` method that I'm now using to both:
+    - clean the terminal after the initial setup;
+    - clean the terminal after each move.
+
+##### 4. Stop mocking the class under the test
   * Lastly I was requested to change the tests in which I've mocked methods of the class under test.
   * Instead of mocking the instances of class under test (`Computer`), I've mocked an instance of `Board` class on which the computer makes its moves. Example:
 
@@ -58,3 +60,5 @@ it 'returns winning position when 5 is not available and winning position is' do
     expect(computer.elaborate_move(board_winning_for_active, "K")).to eq "3"
   end
 ```
+
+*All of the implemented changes increased the testing coverage from 97.45% to 97.75%.*
