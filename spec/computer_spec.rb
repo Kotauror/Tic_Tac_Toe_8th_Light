@@ -38,7 +38,8 @@ describe Computer do
         allow(board).to receive(:available_numbers).and_return(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
         allow(board).to receive(:put_sign_on_board).with("C", "3")
         allow(board).to receive(:is_game_won?).and_return false
-        allow(board).to receive(:put_sign_on_board).with("3", "3")
+        allow(board).to receive(:put_sign_on_board)
+        expect(computer.pick_winning_position(board)).to eq(nil)
       end
     end
     describe 'block_opponent' do
@@ -53,7 +54,8 @@ describe Computer do
         allow(board).to receive(:available_numbers).and_return(["1", "2", "3", "4", "5", "6", "7", "8", "9"])
         allow(board).to receive(:put_sign_on_board).with("K", "3")
         allow(board).to receive(:is_game_won?).and_return false
-        allow(board).to receive(:put_sign_on_board).with("3", "3")
+        allow(board).to receive(:put_sign_on_board)
+        expect(computer.pick_winning_position(board)).to eq(nil)
       end
     end
     describe 'pick_corner' do
